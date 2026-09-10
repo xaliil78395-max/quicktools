@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   title: "QuickTools - Free Online Tools",
   description: "Free online tools for images, text, developers, documents, calculations, and everyday tasks. Fast, simple, and easy to use",
   icons: { icon: "/quicktools-favicon.png" },
+  other: { "google-adsense-account": "ca-pub-8257422205010266" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -28,6 +29,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     </html>
   );
 }
+
+
+
 
 
 
