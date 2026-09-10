@@ -1,5 +1,7 @@
 ﻿"use client";
 
+
+import AdsterraAd from "@/components/AdsterraAd";
 import { useMemo, useState } from "react";
 
 type Fraction = {
@@ -303,7 +305,9 @@ export default function FractionCalculatorPage() {
         </p>
       </div>
 
-      <section className="rounded-2xl border bg-card p-5 shadow-sm">
+
+        <AdsterraAd />
+        <section className="rounded-2xl border bg-card p-5 shadow-sm">
         <div className="grid gap-6 md:grid-cols-[1fr_auto_1fr] md:items-center">
           <div>
             <h2 className="mb-3 text-lg font-semibold">First Fraction</h2>
@@ -482,7 +486,8 @@ export default function FractionCalculatorPage() {
         )}
       </section>
 
-      <section className="mt-10 space-y-6">
+
+<section className="mt-10 space-y-6">
         <div>
           <h2 className="text-2xl font-bold">How Fraction Calculations Work</h2>
           <p className="mt-2 text-muted-foreground">
@@ -529,3 +534,6 @@ export default function FractionCalculatorPage() {
     </main>
   );
 }
+
+
+

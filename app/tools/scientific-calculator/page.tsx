@@ -1,5 +1,7 @@
 ﻿"use client";
 
+
+import AdsterraAd from "@/components/AdsterraAd";
 import { useMemo, useState } from "react";
 
 type AngleMode = "DEG" | "RAD";
@@ -376,6 +378,8 @@ export default function ScientificCalculator() {
           </div>
         </div>
 
+
+        <AdsterraAd />
         <section className="mt-8 rounded-xl border bg-card p-6">
           <h2 className="text-xl font-semibold">
             Scientific Calculator Functions
@@ -391,3 +395,5 @@ export default function ScientificCalculator() {
     </main>
   );
 }
+
+

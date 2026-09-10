@@ -1,5 +1,7 @@
 ﻿"use client";
 
+
+import AdsterraAd from "@/components/AdsterraAd";
 import { useMemo, useState } from "react";
 
 export default function MortgageCalculatorPage() {
@@ -83,6 +85,8 @@ export default function MortgageCalculatorPage() {
       </div>
 
       <div className="grid gap-8 lg:grid-cols-2">
+
+        <AdsterraAd />
         <section className="rounded-2xl border bg-white p-6 shadow-sm">
           <h2 className="mb-6 text-xl font-semibold">Mortgage Details</h2>
 
@@ -174,7 +178,8 @@ export default function MortgageCalculatorPage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border bg-white p-6 shadow-sm">
+
+<section className="rounded-2xl border bg-white p-6 shadow-sm">
           <h2 className="mb-6 text-xl font-semibold">Your Estimate</h2>
 
           {result ? (
@@ -249,7 +254,8 @@ export default function MortgageCalculatorPage() {
         </section>
       </div>
 
-      <section className="mt-8 rounded-2xl border bg-white p-6 shadow-sm">
+
+<section className="mt-8 rounded-2xl border bg-white p-6 shadow-sm">
         <h2 className="text-xl font-semibold">How Mortgage Payments Work</h2>
         <p className="mt-3 leading-7 text-gray-600">
           A mortgage payment typically includes principal and interest.
@@ -261,3 +267,6 @@ export default function MortgageCalculatorPage() {
     </main>
   );
 }
+
+
+

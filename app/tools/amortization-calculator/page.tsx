@@ -1,5 +1,7 @@
 ﻿"use client";
 
+
+import AdsterraAd from "@/components/AdsterraAd";
 import { useMemo, useState } from "react";
 
 type Row = {
@@ -94,7 +96,9 @@ export default function AmortizationCalculator() {
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[360px_1fr]">
-          <section className="rounded-xl border bg-card p-6 shadow-sm">
+
+        <AdsterraAd />
+        <section className="rounded-xl border bg-card p-6 shadow-sm">
             <h2 className="mb-5 text-xl font-semibold">Loan Details</h2>
 
             <div className="space-y-4">
@@ -141,7 +145,8 @@ export default function AmortizationCalculator() {
             </div>
           </section>
 
-          <section className="space-y-6">
+
+<section className="space-y-6">
             {result ? (
               <>
                 <div className="grid gap-4 sm:grid-cols-3">
@@ -243,7 +248,8 @@ export default function AmortizationCalculator() {
           </section>
         </div>
 
-        <section className="mt-8 rounded-xl border bg-card p-6">
+
+<section className="mt-8 rounded-xl border bg-card p-6">
           <h2 className="text-xl font-semibold">
             What is an Amortization Schedule?
           </h2>
@@ -257,3 +263,6 @@ export default function AmortizationCalculator() {
     </main>
   );
 }
+
+
+

@@ -1,5 +1,7 @@
-"use client";
+﻿"use client";
 
+
+import AdsterraAd from "@/components/AdsterraAd";
 import Link from "next/link";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 
@@ -109,7 +111,7 @@ export default function ImageResizer() {
     }
 
     if (width > 10000 || height > 10000) {
-      setError("Maximum dimensions are 10,000 × 10,000 pixels.");
+      setError("Maximum dimensions are 10,000 Ã— 10,000 pixels.");
       return;
     }
 
@@ -220,13 +222,15 @@ export default function ImageResizer() {
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-950">
-      <section className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
+
+        <AdsterraAd />
+        <section className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
         <div className="mx-auto max-w-3xl text-center">
           <Link
             href="/"
             className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 transition hover:text-slate-950"
           >
-            ← Back to QuickTools
+            â† Back to QuickTools
           </Link>
 
           <div className="mt-8 inline-flex rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1 text-sm font-medium text-indigo-700">
@@ -251,7 +255,7 @@ export default function ImageResizer() {
               className="w-full rounded-3xl border-2 border-dashed border-slate-300 bg-white px-6 py-16 text-center shadow-sm transition hover:border-indigo-400 hover:bg-indigo-50/30 sm:px-10"
             >
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-50 text-2xl text-indigo-600">
-                ↑
+                â†‘
               </div>
 
               <h2 className="mt-5 text-xl font-semibold">
@@ -259,7 +263,7 @@ export default function ImageResizer() {
               </h2>
 
               <p className="mt-2 text-sm text-slate-500">
-                JPG, PNG, WebP and other common image formats · Max 25 MB
+                JPG, PNG, WebP and other common image formats Â· Max 25 MB
               </p>
 
               <span className="mt-6 inline-flex rounded-xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white">
@@ -291,7 +295,7 @@ export default function ImageResizer() {
 
                     <div className="mt-2 flex flex-wrap justify-between gap-3 text-sm">
                       <span className="text-slate-500">
-                        {image.width} × {image.height}px
+                        {image.width} Ã— {image.height}px
                       </span>
 
                       <span className="text-slate-500">
@@ -405,7 +409,7 @@ export default function ImageResizer() {
                           </p>
 
                           <p className="mt-1 text-sm text-emerald-700">
-                            {width} × {height}px ·{" "}
+                            {width} Ã— {height}px Â·{" "}
                             {formatBytes(resizedSize)}
                           </p>
                         </div>
@@ -470,3 +474,4 @@ export default function ImageResizer() {
     </main>
   );
 }
+

@@ -1,5 +1,7 @@
 ﻿"use client";
 
+
+import AdsterraAd from "@/components/AdsterraAd";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -171,6 +173,8 @@ export default function PasswordGenerator() {
           </div>
         </div>
 
+
+        <AdsterraAd />
         <section className="mt-12">
           <h2 className="text-2xl font-bold">
             Free online password generator
@@ -186,3 +190,5 @@ export default function PasswordGenerator() {
     </main>
   );
 }
+
+

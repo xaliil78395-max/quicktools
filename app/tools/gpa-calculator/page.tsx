@@ -1,5 +1,7 @@
 ﻿"use client";
 
+
+import AdsterraAd from "@/components/AdsterraAd";
 import { useMemo, useState } from "react";
 
 type Course = {
@@ -121,7 +123,9 @@ export default function GPACalculator() {
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[1fr_300px]">
-          <section className="rounded-xl border bg-card p-6 shadow-sm">
+
+        <AdsterraAd />
+        <section className="rounded-xl border bg-card p-6 shadow-sm">
             <div className="mb-5 flex items-center justify-between gap-4">
               <h2 className="text-xl font-semibold">Your Courses</h2>
               <button
@@ -267,7 +271,8 @@ export default function GPACalculator() {
           </aside>
         </div>
 
-        <section className="mt-8 rounded-xl border bg-card p-6">
+
+<section className="mt-8 rounded-xl border bg-card p-6">
           <h2 className="text-xl font-semibold">How GPA Is Calculated</h2>
           <p className="mt-3 leading-7 text-muted-foreground">
             GPA is calculated by multiplying each course&apos;s grade points
@@ -280,3 +285,6 @@ export default function GPACalculator() {
     </main>
   );
 }
+
+
+

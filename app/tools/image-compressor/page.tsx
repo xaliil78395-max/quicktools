@@ -1,5 +1,7 @@
 ﻿"use client";
 
+
+import AdsterraAd from "@/components/AdsterraAd";
 import Link from "next/link";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 
@@ -197,7 +199,9 @@ export default function ImageCompressor() {
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-950">
-      <section className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
+
+        <AdsterraAd />
+        <section className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
         <div className="mx-auto max-w-3xl text-center">
           <Link href="/"
             className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 transition hover:text-slate-950"
@@ -417,6 +421,8 @@ export default function ImageCompressor() {
     </main>
   );
 }
+
+
 
 
 

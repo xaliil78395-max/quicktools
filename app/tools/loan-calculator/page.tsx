@@ -1,5 +1,7 @@
 ﻿"use client";
 
+
+import AdsterraAd from "@/components/AdsterraAd";
 import { useMemo, useState } from "react";
 
 export default function LoanCalculatorPage() {
@@ -54,7 +56,9 @@ export default function LoanCalculatorPage() {
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">
-          <section className="rounded-2xl border bg-card p-6 shadow-sm">
+
+        <AdsterraAd />
+        <section className="rounded-2xl border bg-card p-6 shadow-sm">
             <h2 className="mb-5 text-xl font-semibold">Loan Details</h2>
 
             <div className="space-y-5">
@@ -100,7 +104,8 @@ export default function LoanCalculatorPage() {
             </div>
           </section>
 
-          <section className="rounded-2xl border bg-card p-6 shadow-sm">
+
+<section className="rounded-2xl border bg-card p-6 shadow-sm">
             <h2 className="mb-5 text-xl font-semibold">Loan Summary</h2>
 
             {result ? (
@@ -159,3 +164,6 @@ export default function LoanCalculatorPage() {
     </main>
   );
 }
+
+
+

@@ -1,5 +1,7 @@
 ﻿"use client";
 
+
+import AdsterraAd from "@/components/AdsterraAd";
 import { useMemo, useState } from "react";
 
 export default function TimeCardCalculatorPage() {
@@ -89,6 +91,8 @@ export default function TimeCardCalculatorPage() {
       </div>
 
       <div className="grid gap-8 lg:grid-cols-2">
+
+        <AdsterraAd />
         <section className="rounded-2xl border bg-white p-6 shadow-sm">
           <h2 className="mb-6 text-xl font-semibold">Work Details</h2>
 
@@ -160,7 +164,8 @@ export default function TimeCardCalculatorPage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border bg-white p-6 shadow-sm">
+
+<section className="rounded-2xl border bg-white p-6 shadow-sm">
           <h2 className="mb-6 text-xl font-semibold">Your Results</h2>
 
           {result ? (
@@ -219,7 +224,8 @@ export default function TimeCardCalculatorPage() {
         </section>
       </div>
 
-      <section className="mt-8 rounded-2xl border bg-white p-6 shadow-sm">
+
+<section className="mt-8 rounded-2xl border bg-white p-6 shadow-sm">
         <h2 className="text-xl font-semibold">How It Works</h2>
         <p className="mt-3 leading-7 text-gray-600">
           Enter your clock-in and clock-out times, subtract any unpaid break,
@@ -231,3 +237,6 @@ export default function TimeCardCalculatorPage() {
     </main>
   );
 }
+
+
+

@@ -1,5 +1,7 @@
-"use client";
+﻿"use client";
 
+
+import AdsterraAd from "@/components/AdsterraAd";
 import Link from "next/link";
 import ReactCrop, { Crop, PixelCrop } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
@@ -117,7 +119,7 @@ export default function ImageCropper() {
             href="/"
             className="rounded-xl border px-4 py-2 text-sm font-medium transition hover:bg-muted"
           >
-            ← Back
+            â† Back
           </Link>
 
           <Link
@@ -244,6 +246,8 @@ export default function ImageCropper() {
           )}
         </div>
 
+
+        <AdsterraAd />
         <section className="mt-12">
           <h2 className="text-2xl font-bold">Free online image cropper</h2>
 
@@ -293,3 +297,4 @@ function getCroppedImg(
     resolve(canvas.toDataURL("image/jpeg", 0.92));
   });
 }
+

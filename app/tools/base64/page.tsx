@@ -1,5 +1,7 @@
 ﻿"use client";
 
+
+import AdsterraAd from "@/components/AdsterraAd";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -135,6 +137,8 @@ export default function Base64Tool() {
           </div>
         </div>
 
+
+        <AdsterraAd />
         <section className="mt-12">
           <h2 className="text-2xl font-bold">
             Free online Base64 encoder and decoder
@@ -150,3 +154,5 @@ export default function Base64Tool() {
     </main>
   );
 }
+
+

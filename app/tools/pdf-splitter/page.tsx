@@ -1,5 +1,7 @@
 ﻿"use client";
 
+
+import AdsterraAd from "@/components/AdsterraAd";
 import Link from "next/link";
 import { useState } from "react";
 import { PDFDocument } from "pdf-lib";
@@ -108,6 +110,8 @@ export default function PdfSplitterPage() {
           ← Back to QuickTools
         </Link>
 
+
+        <AdsterraAd />
         <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
           <div className="mb-8">
             <h1 className="text-3xl font-bold tracking-tight">
@@ -194,7 +198,8 @@ export default function PdfSplitterPage() {
           </div>
         </section>
 
-        <section className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+
+<section className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
           <h2 className="text-xl font-bold">Split PDF Online</h2>
 
           <p className="mt-3 leading-7 text-slate-600">
@@ -253,3 +258,6 @@ function parsePageRange(value: string, totalPages: number): number[] {
 
   return Array.from(pages).sort((a, b) => a - b);
 }
+
+
+

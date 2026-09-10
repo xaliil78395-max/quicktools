@@ -1,5 +1,7 @@
 ﻿"use client";
 
+
+import AdsterraAd from "@/components/AdsterraAd";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -92,6 +94,8 @@ export default function TimestampConverterPage() {
           ← Back to QuickTools
         </Link>
 
+
+        <AdsterraAd />
         <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
           <div className="mb-8">
             <h1 className="text-3xl font-bold tracking-tight">
@@ -232,7 +236,8 @@ export default function TimestampConverterPage() {
           )}
         </section>
 
-        <section className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+
+<section className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
           <h2 className="text-xl font-bold">About Unix Timestamps</h2>
           <p className="mt-3 leading-7 text-slate-600">
             A Unix timestamp represents the number of seconds or milliseconds
@@ -244,3 +249,6 @@ export default function TimestampConverterPage() {
     </main>
   );
 }
+
+
+

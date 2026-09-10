@@ -1,5 +1,7 @@
 ﻿"use client";
 
+
+import AdsterraAd from "@/components/AdsterraAd";
 import Link from "next/link";
 import QRCode from "qrcode";
 import { useState } from "react";
@@ -169,6 +171,8 @@ export default function QRCodeGenerator() {
           </div>
         </div>
 
+
+        <AdsterraAd />
         <section className="mt-12">
           <h2 className="text-2xl font-bold">
             Free online QR code generator
@@ -183,3 +187,5 @@ export default function QRCodeGenerator() {
     </main>
   );
 }
+
+

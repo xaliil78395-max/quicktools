@@ -1,5 +1,7 @@
 ﻿"use client";
 
+
+import AdsterraAd from "@/components/AdsterraAd";
 import { useMemo, useState } from "react";
 
 export default function SentenceCounter() {
@@ -51,6 +53,8 @@ export default function SentenceCounter() {
           </div>
         </div>
 
+
+        <AdsterraAd />
         <section className="mt-12">
           <h2 className="text-2xl font-bold">
             Free online sentence counter
@@ -66,3 +70,5 @@ export default function SentenceCounter() {
     </main>
   );
 }
+
+

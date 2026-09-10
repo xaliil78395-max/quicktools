@@ -1,5 +1,7 @@
 ﻿"use client";
 
+
+import AdsterraAd from "@/components/AdsterraAd";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -73,7 +75,9 @@ export default function UuidGenerator() {
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-950">
-      <section className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
+
+        <AdsterraAd />
+        <section className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
         <div className="mx-auto max-w-3xl text-center">
           <Link
             href="/"
@@ -209,5 +213,7 @@ export default function UuidGenerator() {
     </main>
   );
 }
+
+
 
 

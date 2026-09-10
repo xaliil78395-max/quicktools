@@ -1,5 +1,7 @@
 ﻿"use client";
 
+
+import AdsterraAd from "@/components/AdsterraAd";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -98,7 +100,9 @@ export default function RandomNumberGenerator() {
         </div>
       </header>
 
-      <section className="mx-auto max-w-4xl px-6 py-16 lg:px-8">
+
+        <AdsterraAd />
+        <section className="mx-auto max-w-4xl px-6 py-16 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <div className="mb-6 inline-flex items-center rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700">
             Utilities
@@ -232,7 +236,8 @@ export default function RandomNumberGenerator() {
           </div>
         </div>
 
-        <section className="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-6">
+
+<section className="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-6">
           <h2 className="text-lg font-bold text-slate-900">
             About Random Number Generator
           </h2>
@@ -246,6 +251,9 @@ export default function RandomNumberGenerator() {
     </main>
   );
 }
+
+
+
 
 
 
