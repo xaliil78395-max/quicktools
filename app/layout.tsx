@@ -13,10 +13,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "QuickTools - Free Online Tools",
-  description: "Free online tools for images, text, developers, documents, calculations, and everyday tasks. Fast, simple, and easy to use",
+  title: "QuickHub - Free Online Tools",
+  description:
+    "QuickHub provides fast, simple and free online tools for images, text, developers, PDFs, calculations and everyday tasks.",
   icons: { icon: "/quicktools-favicon.png" },
-  other: { "google-adsense-account": "ca-pub-8257422205010266" },
+  other: {
+    "google-adsense-account": "ca-pub-8257422205010266",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -29,9 +32,3 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     </html>
   );
 }
-
-
-
-
-
-
