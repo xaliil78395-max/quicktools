@@ -1,280 +1,260 @@
 ﻿"use client";
 
-
-import AdsterraAd from "@/components/AdsterraAd";
 import Link from "next/link";
 import { useState } from "react";
+import AdsterraAd from "@/components/AdsterraAd";
 
-type Category = "length" | "weight" | "temperature" | "volume";
-
-const units = {
-  length: [
-    { value: "meter", label: "Meter" },
-    { value: "kilometer", label: "Kilometer" },
-    { value: "centimeter", label: "Centimeter" },
-    { value: "millimeter", label: "Millimeter" },
-    { value: "mile", label: "Mile" },
-    { value: "yard", label: "Yard" },
-    { value: "foot", label: "Foot" },
-    { value: "inch", label: "Inch" },
-  ],
-  weight: [
-    { value: "kilogram", label: "Kilogram" },
-    { value: "gram", label: "Gram" },
-    { value: "milligram", label: "Milligram" },
-    { value: "pound", label: "Pound" },
-    { value: "ounce", label: "Ounce" },
-  ],
-  temperature: [
-    { value: "celsius", label: "Celsius" },
-    { value: "fahrenheit", label: "Fahrenheit" },
-    { value: "kelvin", label: "Kelvin" },
-  ],
-  volume: [
-    { value: "liter", label: "Liter" },
-    { value: "milliliter", label: "Milliliter" },
-    { value: "gallon", label: "US Gallon" },
-    { value: "quart", label: "US Quart" },
-    { value: "pint", label: "US Pint" },
-    { value: "cup", label: "US Cup" },
-  ],
+const categories = {
+  Length: {
+    units: ["m", "km", "cm", "mm", "ft", "in", "mi"],
+    toBase: {
+      m: 1,
+      km: 1000,
+      cm: 0.01,
+      mm: 0.001,
+      ft: 0.3048,
+      in: 0.0254,
+      mi: 1609.344,
+    },
+  },
+  Weight: {
+    units: ["kg", "g", "lb", "oz"],
+    toBase: {
+      kg: 1,
+      g: 0.001,
+      lb: 0.45359237,
+      oz: 0.028349523125,
+    },
+  },
+  Temperature: {
+    units: ["°C", "°F", "K"],
+    toBase: {},
+  },
 } as const;
 
-function convertValue(
-  value: number,
-  from: string,
-  to: string,
-  category: Category,
-) {
-  if (from === to) return value;
+type Category = keyof typeof categories;
 
-  if (category === "temperature") {
-    let celsius = value;
+export default function UnitConverterPage() {
+  const [category, setCategory] = useState<Category>("Length");
+  const [value, setValue] = useState("");
+  const [fromUnit, setFromUnit] = useState("m");
+  const [toUnit, setToUnit] = useState("km");
+  const [result, setResult] = useState("");
+  const [copied, setCopied] = useState(false);
 
-    if (from === "fahrenheit") {
-      celsius = (value - 32) * (5 / 9);
-    } else if (from === "kelvin") {
-      celsius = value - 273.15;
-    }
+  const units = categories[category].units;
 
-    if (to === "fahrenheit") {
-      return celsius * (9 / 5) + 32;
-    }
+  const convertTemperature = (
+    input: number,
+    from: string,
+    to: string
+  ): number => {
+    let celsius = input;
 
-    if (to === "kelvin") {
-      return celsius + 273.15;
-    }
+    if (from === "°F") celsius = (input - 32) * (5 / 9);
+    if (from === "K") celsius = input - 273.15;
 
-    return celsius;
-  }
-
-  const factors: Record<Category, Record<string, number>> = {
-    length: {
-      meter: 1,
-      kilometer: 1000,
-      centimeter: 0.01,
-      millimeter: 0.001,
-      mile: 1609.344,
-      yard: 0.9144,
-      foot: 0.3048,
-      inch: 0.0254,
-    },
-    weight: {
-      kilogram: 1,
-      gram: 0.001,
-      milligram: 0.000001,
-      pound: 0.45359237,
-      ounce: 0.028349523125,
-    },
-    temperature: {},
-    volume: {
-      liter: 1,
-      milliliter: 0.001,
-      gallon: 3.785411784,
-      quart: 0.946352946,
-      pint: 0.473176473,
-      cup: 0.2365882365,
-    },
+    if (to === "°C") return celsius;
+    if (to === "°F") return celsius * (9 / 5) + 32;
+    return celsius + 273.15;
   };
 
-  return (value * factors[category][from]) / factors[category][to];
-}
+  const convert = () => {
+    const input = Number(value);
 
-export default function UnitConverter() {
-  const [category, setCategory] = useState<Category>("length");
-  const [value, setValue] = useState("1");
-  const [fromUnit, setFromUnit] = useState("meter");
-  const [toUnit, setToUnit] = useState("kilometer");
+    if (!Number.isFinite(input)) {
+      setResult("Invalid number");
+      return;
+    }
 
-  const availableUnits = units[category];
+    let converted: number;
 
-  const numericValue = Number(value);
-  const result =
-    value !== "" && Number.isFinite(numericValue)
-      ? convertValue(numericValue, fromUnit, toUnit, category)
-      : null;
+    if (category === "Temperature") {
+      converted = convertTemperature(input, fromUnit, toUnit);
+    } else {
+      const factors = categories[category].toBase;
+      const baseValue =
+        input * factors[fromUnit as keyof typeof factors];
+      converted =
+        baseValue / factors[toUnit as keyof typeof factors];
+    }
 
-  const formattedResult =
-    result === null
-      ? ""
-      : Number.isInteger(result)
-        ? result.toString()
-        : result.toFixed(8).replace(/\.?0+$/, "");
+    const rounded = Number(converted.toPrecision(12));
+    setResult(String(rounded));
+    setCopied(false);
+  };
+
+  const copyResult = async () => {
+    if (!result || result === "Invalid number") return;
+
+    await navigator.clipboard.writeText(result);
+    setCopied(true);
+
+    setTimeout(() => setCopied(false), 1500);
+  };
 
   const handleCategoryChange = (newCategory: Category) => {
     setCategory(newCategory);
-    setFromUnit(units[newCategory][0].value);
-    setToUnit(units[newCategory][1].value);
+
+    const newUnits = categories[newCategory].units;
+    setFromUnit(newUnits[0]);
+    setToUnit(newUnits[1] ?? newUnits[0]);
+    setValue("");
+    setResult("");
+    setCopied(false);
+  };
+
+  const clear = () => {
+    setValue("");
+    setResult("");
+    setCopied(false);
   };
 
   return (
-    <main className="min-h-screen bg-white text-slate-950">
-      <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
-          <Link href="/" className="text-xl font-bold tracking-tight">
-            Quick<span className="text-indigo-600">Tools</span>
+    <main className="min-h-screen px-4 py-8">
+      <div className="mx-auto max-w-4xl">
+        <div className="mb-6 flex items-center justify-between">
+          <Link
+            href="/"
+            className="rounded-xl border border-slate-300 px-4 py-2 font-semibold transition hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
+          >
+            ← Back
           </Link>
 
           <Link
             href="/"
-            className="text-sm font-medium text-slate-600 transition hover:text-slate-950"
+            className="rounded-xl border border-slate-300 px-4 py-2 font-semibold transition hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
           >
-            Back to Tools
+            Home
           </Link>
         </div>
-      </header>
 
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <h1 className="text-3xl font-bold">Unit Converter</h1>
 
-        <AdsterraAd />
-        <section className="mx-auto max-w-4xl px-6 py-16 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <div className="mb-6 inline-flex items-center rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700">
-            Utilities
-          </div>
-
-          <h1 className="text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
-            Unit Converter
-          </h1>
-
-          <p className="mt-5 text-lg leading-8 text-slate-600">
-            Convert length, weight, temperature, and volume units instantly.
+          <p className="mt-2 text-slate-600 dark:text-slate-400">
+            Convert length, weight, and temperature units quickly in your browser.
           </p>
-        </div>
 
-        <div className="mt-12 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-          <div className="flex flex-wrap gap-2">
-            {(["length", "weight", "temperature", "volume"] as Category[]).map(
-              (item) => (
-                <button
-                  key={item}
-                  type="button"
-                  onClick={() => handleCategoryChange(item)}
-                  className={`rounded-xl px-4 py-2.5 text-sm font-semibold capitalize transition ${
-                    category === item
-                      ? "bg-indigo-600 text-white"
-                      : "border border-slate-300 text-slate-700 hover:bg-slate-50"
-                  }`}
-                >
+          <div className="mt-8">
+            <label className="mb-2 block font-semibold">Category</label>
+
+            <select
+              value={category}
+              onChange={(e) =>
+                handleCategoryChange(e.target.value as Category)
+              }
+              className="w-full rounded-xl border border-slate-300 bg-white p-4 outline-none dark:border-slate-700 dark:bg-slate-950"
+            >
+              {Object.keys(categories).map((item) => (
+                <option key={item} value={item}>
                   {item}
-                </button>
-              ),
-            )}
+                </option>
+              ))}
+            </select>
           </div>
 
-          <div className="mt-8 grid gap-5 sm:grid-cols-[1fr_auto_1fr] sm:items-end">
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
             <div>
-              <label
-                htmlFor="value"
-                className="mb-2 block text-sm font-semibold text-slate-700"
-              >
-                Value
-              </label>
+              <label className="mb-2 block font-semibold">Value</label>
+
               <input
-                id="value"
                 type="number"
                 value={value}
-                onChange={(event) => setValue(event.target.value)}
-                className="h-12 w-full rounded-xl border border-slate-300 px-4 text-slate-900 outline-none transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100"
+                onChange={(e) => setValue(e.target.value)}
+                placeholder="Enter value"
+                className="w-full rounded-xl border border-slate-300 bg-white p-4 outline-none focus:border-slate-500 dark:border-slate-700 dark:bg-slate-950"
               />
             </div>
 
-            <div className="hidden pb-3 text-xl font-bold text-slate-400 sm:block">
-              →
+            <div>
+              <label className="mb-2 block font-semibold">From</label>
+
+              <select
+                value={fromUnit}
+                onChange={(e) => setFromUnit(e.target.value)}
+                className="w-full rounded-xl border border-slate-300 bg-white p-4 outline-none dark:border-slate-700 dark:bg-slate-950"
+              >
+                {units.map((unit) => (
+                  <option key={unit} value={unit}>
+                    {unit}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div>
-              <label
-                htmlFor="from-unit"
-                className="mb-2 block text-sm font-semibold text-slate-700"
-              >
-                From
-              </label>
+              <label className="mb-2 block font-semibold">To</label>
+
               <select
-                id="from-unit"
-                value={fromUnit}
-                onChange={(event) => setFromUnit(event.target.value)}
-                className="h-12 w-full rounded-xl border border-slate-300 bg-white px-4 text-slate-900 outline-none transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100"
+                value={toUnit}
+                onChange={(e) => setToUnit(e.target.value)}
+                className="w-full rounded-xl border border-slate-300 bg-white p-4 outline-none dark:border-slate-700 dark:bg-slate-950"
               >
-                {availableUnits.map((unit) => (
-                  <option key={unit.value} value={unit.value}>
-                    {unit.label}
+                {units.map((unit) => (
+                  <option key={unit} value={unit}>
+                    {unit}
                   </option>
                 ))}
               </select>
             </div>
           </div>
 
-          <div className="mt-5">
-            <label
-              htmlFor="to-unit"
-              className="mb-2 block text-sm font-semibold text-slate-700"
+          <div className="mt-5 flex flex-wrap gap-3">
+            <button
+              type="button"
+              onClick={convert}
+              className="rounded-xl bg-slate-900 px-5 py-3 font-semibold text-white transition hover:opacity-90 dark:bg-white dark:text-slate-900"
             >
-              To
-            </label>
-            <select
-              id="to-unit"
-              value={toUnit}
-              onChange={(event) => setToUnit(event.target.value)}
-              className="h-12 w-full rounded-xl border border-slate-300 bg-white px-4 text-slate-900 outline-none transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100"
+              Convert
+            </button>
+
+            <button
+              type="button"
+              onClick={copyResult}
+              disabled={!result || result === "Invalid number"}
+              className="rounded-xl border border-slate-300 px-5 py-3 font-semibold transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:hover:bg-slate-800"
             >
-              {availableUnits.map((unit) => (
-                <option key={unit.value} value={unit.value}>
-                  {unit.label}
-                </option>
-              ))}
-            </select>
+              {copied ? "Copied!" : "Copy"}
+            </button>
+
+            <button
+              type="button"
+              onClick={clear}
+              className="rounded-xl border border-slate-300 px-5 py-3 font-semibold transition hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
+            >
+              Clear
+            </button>
           </div>
 
-          <div className="mt-7 rounded-2xl border border-indigo-100 bg-indigo-50 p-6">
-            <p className="text-sm font-semibold text-indigo-700">Result</p>
-            <p className="mt-2 break-words text-3xl font-bold text-slate-950">
-              {formattedResult || "—"}
-            </p>
-            {result !== null && (
-              <p className="mt-2 text-sm text-slate-600">
-                {value} {availableUnits.find((unit) => unit.value === fromUnit)?.label}{" "}
-                = {formattedResult}{" "}
-                {availableUnits.find((unit) => unit.value === toUnit)?.label}
-              </p>
-            )}
+          {result && (
+            <div className="mt-6 rounded-xl bg-slate-100 p-5 dark:bg-slate-800">
+              <div className="text-sm text-slate-500 dark:text-slate-400">
+                Result
+              </div>
+
+              <div className="mt-1 break-all font-mono text-2xl font-bold">
+                {result} {toUnit}
+              </div>
+            </div>
+          )}
+
+          <div className="mt-8">
+            <h2 className="text-xl font-bold">How to use</h2>
+
+            <ul className="mt-3 list-disc space-y-2 pl-6 text-slate-600 dark:text-slate-400">
+              <li>Select a conversion category.</li>
+              <li>Enter the value and choose the source unit.</li>
+              <li>Choose the target unit and click Convert.</li>
+              <li>Use Copy to copy the result.</li>
+            </ul>
           </div>
         </div>
 
-
-<section className="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-6">
-          <h2 className="text-lg font-bold text-slate-900">
-            About Unit Converter
-          </h2>
-          <p className="mt-3 text-sm leading-7 text-slate-600">
-            Convert common units of length, weight, temperature, and volume
-            quickly and accurately. All calculations are performed directly in
-            your browser.
-          </p>
-        </section>
-      </section>
+        <div className="mt-8">
+          <AdsterraAd />
+        </div>
+      </div>
     </main>
   );
 }
-
-
-

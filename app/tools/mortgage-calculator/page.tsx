@@ -74,7 +74,7 @@ export default function MortgageCalculatorPage() {
     }).format(value);
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-10">
+    <main className="mx-auto max-w-5xl px-4 py-10">`r`n        <div className="mb-6 flex items-center justify-between"><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">← Back to QuickHub</a><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">Home</a></div>
       <div className="mb-8">
         <h1 className="text-3xl font-bold tracking-tight">
           Mortgage Calculator
@@ -267,6 +267,7 @@ export default function MortgageCalculatorPage() {
     </main>
   );
 }
+
 
 
 

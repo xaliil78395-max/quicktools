@@ -1,153 +1,209 @@
 ﻿"use client";
 
-
-import AdsterraAd from "@/components/AdsterraAd";
 import Link from "next/link";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import AdsterraAd from "@/components/AdsterraAd";
 
-function minifyJson(json: string) {
-  const parsed = JSON.parse(json);
-  return JSON.stringify(parsed);
+function formatBytes(bytes: number) {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(2)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+}
+
+function getByteSize(value: string) {
+  return new Blob([value]).size;
 }
 
 export default function JsonMinifierPage() {
-  const [json, setJson] = useState("");
-  const [result, setResult] = useState("");
+  const [input, setInput] = useState("");
+  const [output, setOutput] = useState("");
   const [error, setError] = useState("");
+  const [copied, setCopied] = useState(false);
 
-  function handleMinify() {
-    if (!json.trim()) return;
+  const originalSize = useMemo(() => getByteSize(input), [input]);
+  const minifiedSize = useMemo(() => getByteSize(output), [output]);
+
+  const savings =
+    originalSize > 0 && output
+      ? Math.max(0, ((originalSize - minifiedSize) / originalSize) * 100)
+      : 0;
+
+  function minifyJson() {
+    setError("");
+    setCopied(false);
+
+    if (!input.trim()) {
+      setOutput("");
+      setError("Please paste JSON before minifying.");
+      return;
+    }
 
     try {
-      setError("");
-      setResult(minifyJson(json));
+      const parsed = JSON.parse(input);
+      setOutput(JSON.stringify(parsed));
     } catch {
-      setResult("");
+      setOutput("");
       setError("Invalid JSON. Please check your JSON syntax and try again.");
     }
   }
 
-  function clearAll() {
-    setJson("");
-    setResult("");
-    setError("");
+  async function copyOutput() {
+    if (!output) return;
+
+    try {
+      await navigator.clipboard.writeText(output);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setError("Unable to copy automatically. Please copy the result manually.");
+    }
   }
 
-  async function copyResult() {
-    if (!result) return;
-    await navigator.clipboard.writeText(result);
+  function clearAll() {
+    setInput("");
+    setOutput("");
+    setError("");
+    setCopied(false);
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-10 text-slate-900">
-      <div className="mx-auto max-w-5xl">
-        <Link
-          href="/"
-          className="mb-8 inline-flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-700"
-        >
-          ← Back to QuickTools
-        </Link>
+    <main className="min-h-screen bg-slate-50 px-6 py-12">
+      <div className="mx-auto max-w-4xl">
 
+        <div className="flex items-center justify-between w-full mb-8">
+          <Link
+            href="/"
+            className="text-sm font-medium text-slate-600 hover:text-indigo-600 transition"
+          >
+            ← Back
+          </Link>
 
-        <AdsterraAd />
-        <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold tracking-tight">
-              JSON Minifier
-            </h1>
-            <p className="mt-2 text-slate-600">
-              Minify JSON by removing unnecessary spaces and line breaks.
-            </p>
-          </div>
+          <Link
+            href="/"
+            className="text-sm font-medium text-slate-600 hover:text-indigo-600 transition"
+          >
+            Home
+          </Link>
+        </div>
 
-          <div>
-            <label className="mb-2 block text-sm font-semibold">
-              JSON Input
-            </label>
+        <div className="mb-8">
+          <p className="text-sm font-semibold uppercase tracking-wider text-indigo-600">
+            Developer Tools
+          </p>
 
-            <textarea
-              value={json}
-              onChange={(e) => setJson(e.target.value)}
-              placeholder={'{\n  "name": "John",\n  "age": 30\n}'}
-              rows={14}
-              className="w-full resize-y rounded-xl border border-slate-300 px-4 py-3 font-mono text-sm outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
-            />
-          </div>
+          <h1 className="mt-2 text-4xl font-bold tracking-tight text-slate-900">
+            JSON Minifier
+          </h1>
 
-          <div className="mt-4 flex items-center justify-between text-sm text-slate-500">
-            <span>{json.length} characters</span>
-            <span>
-              {json.trim() ? json.trim().split(/\s+/).length : 0} words
-            </span>
-          </div>
+          <p className="mt-3 max-w-2xl text-slate-600">
+            Minify JSON online by removing unnecessary spaces and line breaks.
+            Fast, private, and processed directly in your browser.
+          </p>
+        </div>
+
+        <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <label
+            htmlFor="json-input"
+            className="mb-3 block text-sm font-semibold text-slate-800"
+          >
+            JSON Input
+          </label>
+
+          <textarea
+            id="json-input"
+            value={input}
+            onChange={(e) => {
+              setInput(e.target.value);
+              if (error) setError("");
+            }}
+            placeholder="Paste your JSON here..."
+            className="min-h-[300px] w-full resize-y rounded-xl border border-slate-300 bg-slate-50 p-4 font-mono text-sm text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+            spellCheck={false}
+          />
 
           {error && (
-            <div className="mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+            <p className="mt-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
               {error}
-            </div>
+            </p>
           )}
 
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-5 flex flex-wrap gap-3">
             <button
               type="button"
-              onClick={handleMinify}
-              disabled={!json.trim()}
-              className="rounded-xl bg-indigo-600 px-5 py-3 font-semibold text-white transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
+              onClick={minifyJson}
+              className="rounded-xl bg-indigo-600 px-5 py-3 font-semibold text-white transition hover:bg-indigo-700"
             >
               Minify JSON
             </button>
 
             <button
               type="button"
+              onClick={copyOutput}
+              disabled={!output}
+              className="rounded-xl border border-slate-300 px-5 py-3 font-semibold text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {copied ? "Copied!" : "Copy"}
+            </button>
+
+            <button
+              type="button"
               onClick={clearAll}
-              className="rounded-xl border border-slate-300 bg-white px-5 py-3 font-semibold text-slate-700 transition hover:bg-slate-50"
+              className="rounded-xl border border-slate-300 px-5 py-3 font-semibold text-slate-700 transition hover:bg-slate-100"
             >
               Clear
             </button>
-
-            {result && (
-              <button
-                type="button"
-                onClick={copyResult}
-                className="rounded-xl border border-slate-300 bg-white px-5 py-3 font-semibold text-slate-700 transition hover:bg-slate-50"
-              >
-                Copy Result
-              </button>
-            )}
           </div>
 
-          {result && (
+          {output && (
             <div className="mt-8">
-              <label className="mb-2 block text-sm font-semibold">
-                Minified JSON
-              </label>
+              <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+                <label
+                  htmlFor="json-output"
+                  className="text-sm font-semibold text-slate-800"
+                >
+                  Minified JSON
+                </label>
+
+                <div className="text-sm text-slate-500">
+                  {formatBytes(originalSize)} → {formatBytes(minifiedSize)}
+
+                  <span className="ml-2 font-semibold text-indigo-600">
+                    ({savings.toFixed(1)}% smaller)
+                  </span>
+                </div>
+              </div>
 
               <textarea
-                value={result}
+                id="json-output"
+                value={output}
                 readOnly
-                rows={10}
-                className="w-full resize-y rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 font-mono text-sm leading-6 outline-none"
+                className="min-h-[240px] w-full resize-y rounded-xl border border-slate-300 bg-slate-50 p-4 font-mono text-sm text-slate-900 outline-none"
+                spellCheck={false}
               />
             </div>
           )}
         </section>
 
-
-<section className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-          <h2 className="text-xl font-bold">
-            What is JSON Minification?
+        <section className="mt-10 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <h2 className="text-2xl font-bold text-slate-900">
+            How to minify JSON
           </h2>
 
-          <p className="mt-3 leading-7 text-slate-600">
-            JSON minification removes unnecessary whitespace and line breaks
-            while preserving the data and structure of the JSON. Smaller JSON
-            data can reduce payload size and make data transfer more efficient.
+          <ol className="mt-4 list-decimal space-y-2 pl-5 text-slate-600">
+            <li>Paste your valid JSON into the input box.</li>
+            <li>Click “Minify JSON” to remove unnecessary whitespace.</li>
+            <li>Review the smaller JSON output and its size reduction.</li>
+            <li>Click “Copy” to copy the minified JSON.</li>
+          </ol>
+
+          <p className="mt-5 text-sm leading-6 text-slate-500">
+            Your JSON is processed directly in your browser. It is not
+            uploaded to a conversion server.
           </p>
         </section>
+
+        <AdsterraAd />
       </div>
     </main>
   );
 }
-
-
-

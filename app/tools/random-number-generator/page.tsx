@@ -84,7 +84,7 @@ export default function RandomNumberGenerator() {
   };
 
   return (
-    <main className="min-h-screen bg-white text-slate-950">
+    <main className="min-h-screen bg-white text-slate-950">`r`n        <div className="mb-6 flex items-center justify-between"><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">← Back to QuickHub</a><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">Home</a></div>
       <header className="border-b border-slate-200 bg-white">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
           <Link href="/" className="text-xl font-bold tracking-tight">
@@ -251,6 +251,7 @@ export default function RandomNumberGenerator() {
     </main>
   );
 }
+
 
 
 

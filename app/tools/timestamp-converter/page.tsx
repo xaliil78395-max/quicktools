@@ -1,254 +1,206 @@
 ﻿"use client";
 
-
-import AdsterraAd from "@/components/AdsterraAd";
 import Link from "next/link";
 import { useState } from "react";
-
-type Mode = "timestamp" | "date";
+import AdsterraAd from "@/components/AdsterraAd";
 
 function formatDate(date: Date) {
-  return {
-    local: date.toLocaleString(),
-    utc: date.toUTCString(),
-    iso: date.toISOString(),
-  };
+  if (Number.isNaN(date.getTime())) return "";
+
+  const pad = (value: number) => String(value).padStart(2, "0");
+
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(
+    date.getDate()
+  )} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(
+    date.getSeconds()
+  )}`;
 }
 
 export default function TimestampConverterPage() {
-  const [mode, setMode] = useState<Mode>("timestamp");
   const [timestamp, setTimestamp] = useState("");
-  const [unit, setUnit] = useState<"seconds" | "milliseconds">("seconds");
-  const [dateValue, setDateValue] = useState("");
-  const [result, setResult] = useState("");
-  const [error, setError] = useState("");
+  const [dateTime, setDateTime] = useState("");
+  const [timestampResult, setTimestampResult] = useState("");
+  const [dateResult, setDateResult] = useState("");
+  const [copied, setCopied] = useState("");
 
-  function convert() {
-    setError("");
-    setResult("");
+  const timestampToDate = () => {
+    const value = Number(timestamp);
 
-    if (mode === "timestamp") {
-      const value = Number(timestamp);
-
-      if (!timestamp.trim() || !Number.isFinite(value)) {
-        setError("Please enter a valid timestamp.");
-        return;
-      }
-
-      const milliseconds =
-        unit === "seconds" ? value * 1000 : value;
-
-      const date = new Date(milliseconds);
-
-      if (Number.isNaN(date.getTime())) {
-        setError("Invalid timestamp.");
-        return;
-      }
-
-      const formatted = formatDate(date);
-
-      setResult(
-        `Local: ${formatted.local}\nUTC: ${formatted.utc}\nISO 8601: ${formatted.iso}`,
-      );
-    } else {
-      if (!dateValue) {
-        setError("Please select a date and time.");
-        return;
-      }
-
-      const date = new Date(dateValue);
-
-      if (Number.isNaN(date.getTime())) {
-        setError("Invalid date.");
-        return;
-      }
-
-      const milliseconds = date.getTime();
-      const seconds = Math.floor(milliseconds / 1000);
-
-      setResult(
-        `Seconds: ${seconds}\nMilliseconds: ${milliseconds}`,
-      );
+    if (!Number.isFinite(value)) {
+      setDateResult("Invalid timestamp");
+      return;
     }
-  }
 
-  async function copyResult() {
-    if (!result) return;
-    await navigator.clipboard.writeText(result);
-  }
+    const milliseconds =
+      Math.abs(value) >= 100000000000 ? value : value * 1000;
 
-  function clearAll() {
+    const date = new Date(milliseconds);
+
+    if (Number.isNaN(date.getTime())) {
+      setDateResult("Invalid timestamp");
+      return;
+    }
+
+    setDateResult(formatDate(date));
+  };
+
+  const dateToTimestamp = () => {
+    const date = new Date(dateTime);
+
+    if (Number.isNaN(date.getTime())) {
+      setTimestampResult("Invalid date");
+      return;
+    }
+
+    setTimestampResult(String(Math.floor(date.getTime() / 1000)));
+  };
+
+  const copyText = async (text: string, type: string) => {
+    if (!text || text.startsWith("Invalid")) return;
+
+    await navigator.clipboard.writeText(text);
+    setCopied(type);
+
+    setTimeout(() => setCopied(""), 1500);
+  };
+
+  const clearAll = () => {
     setTimestamp("");
-    setDateValue("");
-    setResult("");
-    setError("");
-  }
+    setDateTime("");
+    setTimestampResult("");
+    setDateResult("");
+    setCopied("");
+  };
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-10 text-slate-900">
+    <main className="min-h-screen px-4 py-8">
       <div className="mx-auto max-w-4xl">
-        <Link
-          href="/"
-          className="mb-8 inline-flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-700"
-        >
-          ← Back to QuickTools
-        </Link>
+        <div className="mb-6 flex items-center justify-between">
+          <Link
+            href="/"
+            className="rounded-xl border border-slate-300 px-4 py-2 font-semibold transition hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
+          >
+            ← Back
+          </Link>
 
+          <Link
+            href="/"
+            className="rounded-xl border border-slate-300 px-4 py-2 font-semibold transition hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
+          >
+            Home
+          </Link>
+        </div>
 
-        <AdsterraAd />
-        <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold tracking-tight">
-              Timestamp Converter
-            </h1>
-            <p className="mt-2 text-slate-600">
-              Convert Unix timestamps to dates and dates to Unix timestamps.
-            </p>
-          </div>
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <h1 className="text-3xl font-bold">Timestamp Converter</h1>
 
-          <div className="mb-6 grid grid-cols-2 gap-2 rounded-xl bg-slate-100 p-1">
-            <button
-              type="button"
-              onClick={() => {
-                setMode("timestamp");
-                setResult("");
-                setError("");
-              }}
-              className={`rounded-lg px-4 py-3 text-sm font-semibold transition ${
-                mode === "timestamp"
-                  ? "bg-white text-indigo-600 shadow-sm"
-                  : "text-slate-600 hover:text-slate-900"
-              }`}
-            >
-              Timestamp → Date
-            </button>
+          <p className="mt-2 text-slate-600 dark:text-slate-400">
+            Convert Unix timestamps to dates and dates to Unix timestamps.
+          </p>
 
-            <button
-              type="button"
-              onClick={() => {
-                setMode("date");
-                setResult("");
-                setError("");
-              }}
-              className={`rounded-lg px-4 py-3 text-sm font-semibold transition ${
-                mode === "date"
-                  ? "bg-white text-indigo-600 shadow-sm"
-                  : "text-slate-600 hover:text-slate-900"
-              }`}
-            >
-              Date → Timestamp
-            </button>
-          </div>
+          <div className="mt-8">
+            <h2 className="text-xl font-bold">Unix Timestamp → Date</h2>
 
-          {mode === "timestamp" ? (
-            <div className="space-y-5">
-              <div>
-                <label className="mb-2 block text-sm font-semibold">
-                  Unix Timestamp
-                </label>
-                <input
-                  type="number"
-                  value={timestamp}
-                  onChange={(e) => setTimestamp(e.target.value)}
-                  placeholder="e.g. 1756780800"
-                  className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
-                />
-              </div>
+            <input
+              type="text"
+              value={timestamp}
+              onChange={(e) => setTimestamp(e.target.value)}
+              placeholder="Example: 1758196800"
+              className="mt-3 w-full rounded-xl border border-slate-300 bg-white p-4 outline-none transition focus:border-slate-500 dark:border-slate-700 dark:bg-slate-950"
+            />
 
-              <div>
-                <label className="mb-2 block text-sm font-semibold">
-                  Timestamp Unit
-                </label>
-                <select
-                  value={unit}
-                  onChange={(e) =>
-                    setUnit(
-                      e.target.value as "seconds" | "milliseconds",
-                    )
-                  }
-                  className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
-                >
-                  <option value="seconds">Seconds</option>
-                  <option value="milliseconds">Milliseconds</option>
-                </select>
-              </div>
-            </div>
-          ) : (
-            <div>
-              <label className="mb-2 block text-sm font-semibold">
-                Date and Time
-              </label>
-              <input
-                type="datetime-local"
-                value={dateValue}
-                onChange={(e) => setDateValue(e.target.value)}
-                className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
-              />
-            </div>
-          )}
-
-          {error && (
-            <div className="mt-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-              {error}
-            </div>
-          )}
-
-          <div className="mt-6 flex flex-wrap gap-3">
-            <button
-              type="button"
-              onClick={convert}
-              className="rounded-xl bg-indigo-600 px-5 py-3 font-semibold text-white transition hover:bg-indigo-700"
-            >
-              Convert
-            </button>
-
-            <button
-              type="button"
-              onClick={clearAll}
-              className="rounded-xl border border-slate-300 bg-white px-5 py-3 font-semibold text-slate-700 transition hover:bg-slate-50"
-            >
-              Clear
-            </button>
-
-            {result && (
+            <div className="mt-3 flex flex-wrap gap-3">
               <button
                 type="button"
-                onClick={copyResult}
-                className="rounded-xl border border-slate-300 bg-white px-5 py-3 font-semibold text-slate-700 transition hover:bg-slate-50"
+                onClick={timestampToDate}
+                className="rounded-xl bg-slate-900 px-5 py-3 font-semibold text-white transition hover:opacity-90 dark:bg-white dark:text-slate-900"
               >
-                Copy Result
+                Convert to Date
               </button>
+
+              <button
+                type="button"
+                onClick={() => copyText(dateResult, "date")}
+                disabled={!dateResult || dateResult === "Invalid timestamp"}
+                className="rounded-xl border border-slate-300 px-5 py-3 font-semibold transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:hover:bg-slate-800"
+              >
+                {copied === "date" ? "Copied!" : "Copy"}
+              </button>
+            </div>
+
+            {dateResult && (
+              <div className="mt-4 rounded-xl bg-slate-100 p-4 font-mono dark:bg-slate-800">
+                {dateResult}
+              </div>
             )}
           </div>
 
-          {result && (
-            <div className="mt-8">
-              <label className="mb-2 block text-sm font-semibold">
-                Result
-              </label>
-              <textarea
-                value={result}
-                readOnly
-                rows={4}
-                className="w-full resize-none rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 font-mono text-sm outline-none"
-              />
+          <div className="my-10 border-t border-slate-200 dark:border-slate-800" />
+
+          <div>
+            <h2 className="text-xl font-bold">Date → Unix Timestamp</h2>
+
+            <input
+              type="datetime-local"
+              value={dateTime}
+              onChange={(e) => setDateTime(e.target.value)}
+              className="mt-3 w-full rounded-xl border border-slate-300 bg-white p-4 outline-none transition focus:border-slate-500 dark:border-slate-700 dark:bg-slate-950"
+            />
+
+            <div className="mt-3 flex flex-wrap gap-3">
+              <button
+                type="button"
+                onClick={dateToTimestamp}
+                className="rounded-xl bg-slate-900 px-5 py-3 font-semibold text-white transition hover:opacity-90 dark:bg-white dark:text-slate-900"
+              >
+                Convert to Timestamp
+              </button>
+
+              <button
+                type="button"
+                onClick={() => copyText(timestampResult, "timestamp")}
+                disabled={
+                  !timestampResult || timestampResult === "Invalid date"
+                }
+                className="rounded-xl border border-slate-300 px-5 py-3 font-semibold transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:hover:bg-slate-800"
+              >
+                {copied === "timestamp" ? "Copied!" : "Copy"}
+              </button>
             </div>
-          )}
-        </section>
 
+            {timestampResult && (
+              <div className="mt-4 rounded-xl bg-slate-100 p-4 font-mono dark:bg-slate-800">
+                {timestampResult}
+              </div>
+            )}
+          </div>
 
-<section className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-          <h2 className="text-xl font-bold">About Unix Timestamps</h2>
-          <p className="mt-3 leading-7 text-slate-600">
-            A Unix timestamp represents the number of seconds or milliseconds
-            since January 1, 1970, UTC. It is commonly used by applications,
-            APIs, databases, and developers to store and exchange dates.
-          </p>
-        </section>
+          <div className="mt-8">
+            <button
+              type="button"
+              onClick={clearAll}
+              className="rounded-xl border border-slate-300 px-5 py-3 font-semibold transition hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
+            >
+              Clear
+            </button>
+          </div>
+
+          <div className="mt-8">
+            <h2 className="text-xl font-bold">How to use</h2>
+
+            <ul className="mt-3 list-disc space-y-2 pl-6 text-slate-600 dark:text-slate-400">
+              <li>Enter a Unix timestamp and convert it to a date.</li>
+              <li>Choose a date and time to convert it to a Unix timestamp.</li>
+              <li>Use Copy to copy the result.</li>
+              <li>Use Clear to reset the converter.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <AdsterraAd />
+        </div>
       </div>
     </main>
   );
 }
-
-
-

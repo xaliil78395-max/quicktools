@@ -53,7 +53,7 @@ export default function EmailValidatorPage() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-10 text-slate-900">
+    <main className="min-h-screen bg-slate-50 px-4 py-10 text-slate-900">`r`n        <div className="mb-6 flex items-center justify-between"><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">← Back to QuickHub</a><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">Home</a></div>
       <div className="mx-auto max-w-4xl">
         <Link
           href="/"
@@ -171,6 +171,7 @@ export default function EmailValidatorPage() {
     </main>
   );
 }
+
 
 
 

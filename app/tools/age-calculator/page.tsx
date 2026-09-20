@@ -1,247 +1,223 @@
 ﻿"use client";
 
-
-import AdsterraAd from "@/components/AdsterraAd";
 import Link from "next/link";
 import { useState } from "react";
+import AdsterraAd from "@/components/AdsterraAd";
 
-type AgeResult = {
-  years: number;
-  months: number;
-  days: number;
-  totalDays: number;
-  nextBirthdayDays: number;
-};
+function calculateAge(birthDate: Date, today: Date) {
+  let years = today.getFullYear() - birthDate.getFullYear();
+  let months = today.getMonth() - birthDate.getMonth();
+  let days = today.getDate() - birthDate.getDate();
+
+  if (days < 0) {
+    months--;
+
+    const previousMonth = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      0
+    );
+
+    days += previousMonth.getDate();
+  }
+
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  return { years, months, days };
+}
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
 
 export default function AgeCalculatorPage() {
   const [birthDate, setBirthDate] = useState("");
-  const [asOfDate, setAsOfDate] = useState(
-    new Date().toISOString().split("T")[0],
-  );
-  const [result, setResult] = useState<AgeResult | null>(null);
+  const [result, setResult] = useState<{
+    years: number;
+    months: number;
+    days: number;
+    formattedBirthDate: string;
+  } | null>(null);
   const [error, setError] = useState("");
+  const [copied, setCopied] = useState(false);
 
-  function calculateAge() {
+  const calculate = () => {
     setError("");
     setResult(null);
+    setCopied(false);
 
-    if (!birthDate || !asOfDate) {
-      setError("Please enter both dates.");
+    if (!birthDate) {
+      setError("Please enter your date of birth.");
       return;
     }
 
-    const birth = parseDate(birthDate);
-    const current = parseDate(asOfDate);
+    const [year, month, day] = birthDate.split("-").map(Number);
+    const birth = new Date(year, month - 1, day);
 
-    if (!birth || !current) {
-      setError("Please enter valid dates.");
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (birth > today) {
+      setError("Date of birth cannot be in the future.");
       return;
     }
 
-    if (birth > current) {
-      setError("Birth date cannot be after the selected date.");
-      return;
-    }
-
-    let years = current.getFullYear() - birth.getFullYear();
-    let months = current.getMonth() - birth.getMonth();
-    let days = current.getDate() - birth.getDate();
-
-    if (days < 0) {
-      months -= 1;
-      const previousMonth = new Date(
-        current.getFullYear(),
-        current.getMonth(),
-        0,
-      );
-      days += previousMonth.getDate();
-    }
-
-    if (months < 0) {
-      years -= 1;
-      months += 12;
-    }
-
-    const totalDays = Math.floor(
-      (current.getTime() - birth.getTime()) / 86400000,
-    );
-
-    const nextBirthday = getNextBirthday(birth, current);
-    const nextBirthdayDays = Math.ceil(
-      (nextBirthday.getTime() - current.getTime()) / 86400000,
-    );
+    const age = calculateAge(birth, today);
 
     setResult({
-      years,
-      months,
-      days,
-      totalDays,
-      nextBirthdayDays,
+      ...age,
+      formattedBirthDate: formatDate(birth),
     });
-  }
+  };
 
-  function clearAll() {
+  const copyResult = async () => {
+    if (!result) return;
+
+    const text = `Age: ${result.years} years, ${result.months} months, ${result.days} days`;
+
+    await navigator.clipboard.writeText(text);
+    setCopied(true);
+
+    setTimeout(() => setCopied(false), 1500);
+  };
+
+  const clear = () => {
     setBirthDate("");
-    setAsOfDate(new Date().toISOString().split("T")[0]);
     setResult(null);
     setError("");
-  }
+    setCopied(false);
+  };
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-10 text-slate-900">
+    <main className="min-h-screen px-4 py-8">
       <div className="mx-auto max-w-4xl">
-        <Link
-          href="/"
-          className="mb-8 inline-flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-700"
-        >
-          ← Back to QuickTools
-        </Link>
+        <div className="mb-6 flex items-center justify-between">
+          <Link
+            href="/"
+            className="rounded-xl border border-slate-300 px-4 py-2 font-semibold transition hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
+          >
+            ← Back
+          </Link>
 
+          <Link
+            href="/"
+            className="rounded-xl border border-slate-300 px-4 py-2 font-semibold transition hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
+          >
+            Home
+          </Link>
+        </div>
 
-        <AdsterraAd />
-        <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold tracking-tight">
-              Age Calculator
-            </h1>
-            <p className="mt-2 text-slate-600">
-              Calculate your exact age in years, months, and days, and find out
-              how many days remain until your next birthday.
-            </p>
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <h1 className="text-3xl font-bold">Age Calculator</h1>
+
+          <p className="mt-2 text-slate-600 dark:text-slate-400">
+            Calculate your exact age in years, months, and days.
+          </p>
+
+          <div className="mt-8">
+            <label className="mb-2 block font-semibold">
+              Date of Birth
+            </label>
+
+            <input
+              type="date"
+              value={birthDate}
+              onChange={(e) => setBirthDate(e.target.value)}
+              className="w-full rounded-xl border border-slate-300 bg-white p-4 outline-none transition focus:border-slate-500 dark:border-slate-700 dark:bg-slate-950"
+            />
           </div>
 
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-            <div className="grid gap-4 sm:grid-cols-2">
-              <label className="block">
-                <span className="mb-2 block text-sm font-semibold text-slate-700">
-                  Date of Birth
-                </span>
-                <input
-                  type="date"
-                  value={birthDate}
-                  onChange={(event) => setBirthDate(event.target.value)}
-                  className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
-                />
-              </label>
-
-              <label className="block">
-                <span className="mb-2 block text-sm font-semibold text-slate-700">
-                  Calculate Age On
-                </span>
-                <input
-                  type="date"
-                  value={asOfDate}
-                  onChange={(event) => setAsOfDate(event.target.value)}
-                  className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
-                />
-              </label>
-            </div>
-          </div>
-
-          {error && (
-            <div className="mt-5 rounded-xl border border-red-200 bg-red-50 px-4 py-4 font-medium text-red-700">
-              {error}
-            </div>
-          )}
-
-          {result && (
-            <div className="mt-5 rounded-2xl border border-indigo-200 bg-indigo-50 p-5">
-              <div className="text-sm font-semibold text-indigo-700">
-                Your Exact Age
-              </div>
-
-              <div className="mt-2 text-3xl font-bold text-indigo-700">
-                {result.years} years, {result.months} months, {result.days}{" "}
-                days
-              </div>
-
-              <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                <div className="rounded-xl bg-white p-4">
-                  <div className="text-sm font-semibold text-slate-600">
-                    Total days lived
-                  </div>
-                  <div className="mt-1 text-xl font-bold text-slate-900">
-                    {formatNumber(result.totalDays)}
-                  </div>
-                </div>
-
-                <div className="rounded-xl bg-white p-4">
-                  <div className="text-sm font-semibold text-slate-600">
-                    Days until next birthday
-                  </div>
-                  <div className="mt-1 text-xl font-bold text-slate-900">
-                    {result.nextBirthdayDays}
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-5 flex flex-wrap gap-3">
             <button
               type="button"
-              onClick={calculateAge}
-              className="rounded-xl bg-indigo-600 px-5 py-3 font-semibold text-white transition hover:bg-indigo-700"
+              onClick={calculate}
+              className="rounded-xl bg-slate-900 px-5 py-3 font-semibold text-white transition hover:opacity-90 dark:bg-white dark:text-slate-900"
             >
               Calculate Age
             </button>
 
             <button
               type="button"
-              onClick={clearAll}
-              className="rounded-xl border border-slate-300 bg-white px-5 py-3 font-semibold text-slate-700 transition hover:bg-slate-50"
+              onClick={copyResult}
+              disabled={!result}
+              className="rounded-xl border border-slate-300 px-5 py-3 font-semibold transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:hover:bg-slate-800"
+            >
+              {copied ? "Copied!" : "Copy"}
+            </button>
+
+            <button
+              type="button"
+              onClick={clear}
+              className="rounded-xl border border-slate-300 px-5 py-3 font-semibold transition hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
             >
               Clear
             </button>
           </div>
-        </section>
 
+          {error && (
+            <div className="mt-6 rounded-xl border border-red-200 bg-red-50 p-4 text-red-700 dark:border-red-900 dark:bg-red-950/30 dark:text-red-300">
+              {error}
+            </div>
+          )}
 
-<section className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-          <h2 className="text-xl font-bold">Calculate Your Age Online</h2>
+          {result && (
+            <div className="mt-6 rounded-2xl bg-slate-100 p-6 dark:bg-slate-800">
+              <div className="text-sm text-slate-500 dark:text-slate-400">
+                Date of Birth
+              </div>
 
-          <p className="mt-3 leading-7 text-slate-600">
-            This free age calculator calculates your exact age between two
-            dates. Enter your date of birth and choose the date on which you
-            want to calculate your age. You can use it to find your age in
-            years, months, and days or calculate the number of days until your
-            next birthday.
-          </p>
-        </section>
+              <div className="mt-1 font-semibold">
+                {result.formattedBirthDate}
+              </div>
+
+              <div className="mt-6 grid gap-4 sm:grid-cols-3">
+                <div className="rounded-xl bg-white p-5 text-center dark:bg-slate-900">
+                  <div className="text-3xl font-bold">{result.years}</div>
+                  <div className="mt-1 text-slate-500 dark:text-slate-400">
+                    Years
+                  </div>
+                </div>
+
+                <div className="rounded-xl bg-white p-5 text-center dark:bg-slate-900">
+                  <div className="text-3xl font-bold">{result.months}</div>
+                  <div className="mt-1 text-slate-500 dark:text-slate-400">
+                    Months
+                  </div>
+                </div>
+
+                <div className="rounded-xl bg-white p-5 text-center dark:bg-slate-900">
+                  <div className="text-3xl font-bold">{result.days}</div>
+                  <div className="mt-1 text-slate-500 dark:text-slate-400">
+                    Days
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div className="mt-8">
+            <h2 className="text-xl font-bold">How to use</h2>
+
+            <ul className="mt-3 list-disc space-y-2 pl-6 text-slate-600 dark:text-slate-400">
+              <li>Select your date of birth.</li>
+              <li>Click “Calculate Age”.</li>
+              <li>Your age will be shown in years, months, and days.</li>
+              <li>Use Copy to copy the result.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <AdsterraAd />
+        </div>
       </div>
     </main>
   );
 }
-
-function parseDate(value: string) {
-  const [year, month, day] = value.split("-").map(Number);
-
-  if (
-    !Number.isInteger(year) ||
-    !Number.isInteger(month) ||
-    !Number.isInteger(day)
-  ) {
-    return null;
-  }
-
-  return new Date(year, month - 1, day);
-}
-
-function getNextBirthday(birth: Date, current: Date) {
-  let year = current.getFullYear();
-  let birthday = new Date(year, birth.getMonth(), birth.getDate());
-
-  if (birthday < current) {
-    year += 1;
-    birthday = new Date(year, birth.getMonth(), birth.getDate());
-  }
-
-  return birthday;
-}
-
-function formatNumber(value: number) {
-  return new Intl.NumberFormat("en-US").format(value);
-}
-
-
-

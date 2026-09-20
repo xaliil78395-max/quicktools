@@ -170,7 +170,7 @@ export default function JpgToPng() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-950">
+    <main className="min-h-screen bg-slate-50 text-slate-950">`r`n        <div className="mb-6 flex items-center justify-between"><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">← Back to QuickHub</a><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">Home</a></div>
 
         <AdsterraAd />
         <section className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
@@ -346,5 +346,6 @@ export default function JpgToPng() {
     </main>
   );
 }
+
 
 

@@ -46,7 +46,7 @@ export default function LoanCalculatorPage() {
     }).format(value);
 
   return (
-    <main className="min-h-screen bg-background px-4 py-10">
+    <main className="min-h-screen bg-background px-4 py-10">`r`n        <div className="mb-6 flex items-center justify-between"><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">← Back to QuickHub</a><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">Home</a></div>
       <div className="mx-auto max-w-3xl">
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold tracking-tight">Loan Calculator</h1>
@@ -164,6 +164,7 @@ export default function LoanCalculatorPage() {
     </main>
   );
 }
+
 
 
 

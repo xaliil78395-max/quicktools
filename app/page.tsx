@@ -21,8 +21,19 @@ const categories = [
       { name: "JPG to PNG", description: "Convert JPG images to PNG", href: "/tools/jpg-to-png" },
       { name: "PNG to JPG", description: "Convert PNG images to JPG", href: "/tools/png-to-jpg" },
       { name: "PNG to WebP", description: "Convert PNG images to WebP", href: "/tools/png-to-webp" },
+      { name: "HEIC to JPG", description: "Convert HEIC images to JPG", href: "/tools/heic-to-jpg" },
+      { name: "HEIC to PNG", description: "Convert HEIC images to PNG", href: "/tools/heic-to-png" },
+    { name: "WebP to JPG", description: "Convert WebP images to JPG", href: "/tools/webp-to-jpg" },
+    { name: "WebP to PNG", description: "Convert WebP images to PNG", href: "/tools/webp-to-png" },
       { name: "Image Cropper", description: "Crop images easily", href: "/tools/image-cropper" },
       { name: "Image to Base64", description: "Convert images to Base64", href: "/tools/image-to-base64" },
+    { name: "Image to PDF", description: "Convert images to PDF", href: "/tools/image-to-pdf" },
+    { name: "Word to PDF", description: "Convert Word documents to PDF", href: "/tools/word-to-pdf" },
+    { name: "Excel to PDF", description: "Convert Excel spreadsheets to PDF", href: "/tools/excel-to-pdf" },
+    { name: "PowerPoint to PDF", description: "Convert PowerPoint presentations to PDF", href: "/tools/powerpoint-to-pdf" },
+    { name: "PDF to PNG", description: "Convert PDF pages to PNG images", href: "/tools/pdf-to-png" },
+    { name: "PDF to Text", description: "Extract text from PDF files", href: "/tools/pdf-to-text" },
+    { name: "PDF Page Extractor", description: "Extract selected PDF pages", href: "/tools/pdf-page-extractor" },
     ],
   },
   {
@@ -37,6 +48,7 @@ const categories = [
       { name: "Remove Duplicate Lines", description: "Remove repeated lines", href: "/tools/remove-duplicate-lines" },
       { name: "Text Sorter", description: "Sort text lines alphabetically", href: "/tools/text-sorter" },
       { name: "URL Encoder / Decoder", description: "Encode and decode URLs", href: "/tools/url-encoder-decoder" },
+    { name: "HTML to Plain Text Converter", description: "Convert HTML to plain text", href: "/tools/html-to-text" },
       { name: "Case Converter", description: "Change text capitalization", href: "/tools/case-converter" },
     ],
   },
@@ -57,6 +69,30 @@ const categories = [
       { name: "HTML Entity Encoder / Decoder", description: "Encode and decode HTML entities", href: "/tools/html-entity-encoder" },
       { name: "HTML Minifier", description: "Minify and compress HTML code", href: "/tools/html-minifier" },
       { name: "JSON Minifier", description: "Minify and compress JSON data", href: "/tools/json-minifier" },
+    { name: "JavaScript Formatter", description: "Format and beautify JavaScript code", href: "/tools/javascript-formatter" },
+    { name: "JavaScript Minifier", description: "Minify JavaScript code", href: "/tools/javascript-minifier" },
+    { name: "CSS Minifier", description: "Minify CSS code", href: "/tools/css-minifier" },
+    { name: "XML Formatter", description: "Format and beautify XML code", href: "/tools/xml-formatter" },
+    { name: "JSON to CSV", description: "Convert JSON data to CSV", href: "/tools/json-to-csv" },
+    { name: "CSV to JSON", description: "Convert CSV data to JSON", href: "/tools/csv-to-json" },
+    { name: "JSON to XML", description: "Convert JSON data to XML", href: "/tools/json-to-xml" },
+    { name: "XML to JSON", description: "Convert XML data to JSON", href: "/tools/xml-to-json" },
+    { name: "JSON to YAML", description: "Convert JSON data to YAML", href: "/tools/json-to-yaml" },
+    { name: "YAML to JSON", description: "Convert YAML data to JSON", href: "/tools/yaml-to-json" },
+    { name: "CSV to XML", description: "Convert CSV data to XML", href: "/tools/csv-to-xml" },
+    { name: "XML to CSV", description: "Convert XML data to CSV", href: "/tools/xml-to-csv" },
+    { name: "CSV to YAML", description: "Convert CSV data to YAML", href: "/tools/csv-to-yaml" },
+    { name: "YAML to CSV", description: "Convert YAML data to CSV", href: "/tools/yaml-to-csv" },
+    { name: "YAML to XML", description: "Convert YAML data to XML", href: "/tools/yaml-to-xml" },
+    { name: "XML to HTML", description: "Convert XML data to HTML", href: "/tools/xml-to-html" },
+    { name: "CSV to HTML", description: "Convert CSV data to HTML", href: "/tools/csv-to-html" },
+    { name: "YAML to HTML", description: "Convert YAML data to HTML", href: "/tools/yaml-to-html" },
+    { name: "JSON to HTML", description: "Convert JSON data to HTML", href: "/tools/json-to-html" },
+    { name: "JSON to Markdown", description: "Convert JSON data to Markdown", href: "/tools/json-to-markdown" },
+    { name: "CSV to Markdown", description: "Convert CSV data to Markdown", href: "/tools/csv-to-markdown" },
+    { name: "XML to Markdown", description: "Convert XML data to Markdown", href: "/tools/xml-to-markdown" },
+    { name: "YAML to Markdown", description: "Convert YAML data to Markdown", href: "/tools/yaml-to-markdown" },
+    { name: "HTML to Markdown Converter", description: "Convert HTML code to Markdown", href: "/tools/html-to-markdown" }
     ],
   },
   {
@@ -69,6 +105,7 @@ const categories = [
       { name: "Random Number Generator", description: "Generate random numbers", href: "/tools/random-number-generator" },
       { name: "Unit Converter", description: "Convert common units instantly", href: "/tools/unit-converter" },
       { name: "Timestamp Converter", description: "Convert Unix timestamps and dates", href: "/tools/timestamp-converter" },
+      { name: "Age Calculator", description: "Calculate age in years, months and days", href: "/tools/age-calculator" },
       { name: "AI Lesson Summarizer", description: "Summarize lessons with AI", href: "/tools/ai-lesson-summarizer" },
       { name: "Email Validator", description: "Validate email address format", href: "/tools/email-validator" },
       { name: "PDF to Word Converter", description: "Convert PDF files to editable Word documents", href: "/tools/pdf-to-word" },
@@ -76,11 +113,17 @@ const categories = [
       { name: "PDF Merger", description: "Merge multiple PDF files into one", href: "/tools/pdf-merger" },
       { name: "PDF Splitter", description: "Extract pages from PDF files", href: "/tools/pdf-splitter" },
       { name: "PDF to JPG Converter", description: "Convert PDF pages to JPG images", href: "/tools/pdf-to-jpg" },
+    { name: "PDF Compressor", description: "Reduce PDF file size", href: "/tools/pdf-compressor" },
       { name: "Loan Calculator", description: "Calculate monthly loan payments and total interest", href: "/tools/loan-calculator" },
       { name: "Amortization Calculator", description: "View loan payments, interest, principal, and balance", href: "/tools/amortization-calculator" },
       { name: "GPA Calculator", description: "Calculate semester and cumulative GPA", href: "/tools/gpa-calculator" },
       { name: "Scientific Calculator", description: "Advanced scientific calculator for math and science", href: "/tools/scientific-calculator" },
             { name: "Fraction Calculator", description: "Calculate, simplify, and convert fractions", href: "/tools/fraction-calculator" },
+    { name: "BMI Calculator", description: "Calculate body mass index", href: "/tools/bmi-calculator" },
+    { name: "Percentage Calculator", description: "Calculate percentages quickly", href: "/tools/percentage-calculator" },
+    { name: "Compound Interest Calculator", description: "Calculate compound interest and growth", href: "/tools/compound-interest-calculator" },
+    { name: "Mortgage Calculator", description: "Calculate mortgage payments and interest", href: "/tools/mortgage-calculator" },
+    { name: "Time Card Calculator", description: "Calculate work hours and time totals", href: "/tools/time-card-calculator" },
       { name: "Pomodoro Timer", description: "Focus with customizable work and break cycles", href: "/tools/pomodoro-timer" },
     ],
   },
@@ -577,5 +620,42 @@ export default function Home() {
     </main>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
