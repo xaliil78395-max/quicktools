@@ -4,6 +4,12 @@
 };
 
 export const relatedTools: Record<string, RelatedTool[]> = {
+  "image-to-text": [
+    { name: "Image Resizer", href: "/tools/image-resizer" },
+    { name: "Image Compressor", href: "/tools/image-compressor" },
+    { name: "JPG to PNG", href: "/tools/jpg-to-png" },
+    { name: "PNG to JPG", href: "/tools/png-to-jpg" },
+  ],
   "csv-to-json": [
     { name: "CSV to XML", href: "/tools/csv-to-xml" },
     { name: "CSV to YAML", href: "/tools/csv-to-yaml" },
@@ -499,4 +505,5 @@ export const relatedTools: Record<string, RelatedTool[]> = {
     { name: "Markdown Formatter", href: "/tools/markdown-formatter" },
   ],
 };
+
 

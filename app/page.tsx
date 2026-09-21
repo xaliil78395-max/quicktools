@@ -17,6 +17,7 @@ const categories = [
     icon: "◈",
     tools: [
       { name: "Image Compressor", description: "Reduce image file size", href: "/tools/image-compressor" },
+            { name: "Image to Text", description: "Extract text from images", href: "/tools/image-to-text" },
       { name: "Image Resizer", description: "Resize images quickly", href: "/tools/image-resizer" },
       { name: "JPG to PNG", description: "Convert JPG images to PNG", href: "/tools/jpg-to-png" },
       { name: "PNG to JPG", description: "Convert PNG images to JPG", href: "/tools/png-to-jpg" },
@@ -620,6 +621,7 @@ export default function Home() {
     </main>
   );
 }
+
 
 
 

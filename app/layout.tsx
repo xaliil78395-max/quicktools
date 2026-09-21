@@ -18,7 +18,6 @@ export const metadata: Metadata = {
     "QuickHub provides fast, simple and free online tools for images, text, developers, PDFs, calculations and everyday tasks.",
   icons: { icon: "/quicktools-favicon.png" },
   other: {
-    "google-adsense-account": "ca-pub-8257422205010266",
   },
 };
 
@@ -28,7 +27,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6769649655859038" crossOrigin="anonymous"></script>
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }
+
+
+
