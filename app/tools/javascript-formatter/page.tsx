@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import RelatedTools from "@/components/RelatedTools";
 import AdsterraAd from "@/components/AdsterraAd";
 
 function beautifyJavaScript(code: string) {
@@ -320,8 +321,13 @@ export default function JavaScriptFormatterPage() {
           </p>
         </section>
 
+        <RelatedTools currentTool="javascript-formatter" />
+
+
+
         <AdsterraAd />
       </div>
     </main>
   );
 }
+

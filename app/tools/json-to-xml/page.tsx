@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import RelatedTools from "@/components/RelatedTools";
 import AdsterraAd from "@/components/AdsterraAd";
 
 function escapeXml(value: string): string {
@@ -212,9 +213,13 @@ export default function JsonToXmlPage() {
         </div>
 
         <div className="mt-10">
+          <RelatedTools currentTool="json-to-xml" />
+
+
           <AdsterraAd />
         </div>
       </div>
     </main>
   );
 }
+

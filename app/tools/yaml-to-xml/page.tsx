@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import { useState } from "react";
 
@@ -349,7 +350,13 @@ tags:
           <div id="container-ads" />
         </div>
       </div>
-    </main>
+    <RelatedTools currentTool="yaml-to-xml" />
+</main>
   );
 }
+
+
+
+
+
 

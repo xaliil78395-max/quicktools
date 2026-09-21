@@ -1,6 +1,7 @@
 ﻿"use client";
 
 
+import RelatedTools from "@/components/RelatedTools";
 import AdsterraAd from "@/components/AdsterraAd";
 import Link from "next/link";
 import { useState } from "react";
@@ -82,7 +83,7 @@ export default function PdfMergerPage() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-10 text-slate-900">`r`n        <div className="mb-6 flex items-center justify-between"><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">← Back to QuickHub</a><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">Home</a></div>
+    <main className="min-h-screen bg-slate-50 px-4 py-10 text-slate-900">        <div className="mb-6 flex items-center justify-between"><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">← Back to QuickHub</a><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">Home</a></div>
       <div className="mx-auto max-w-4xl">
         <Link
           href="/"
@@ -90,6 +91,11 @@ export default function PdfMergerPage() {
         >
           ← Back to QuickTools
         </Link>
+
+
+        <RelatedTools currentTool="pdf-merger" />
+
+
 
 
         <AdsterraAd />
@@ -185,6 +191,8 @@ export default function PdfMergerPage() {
     </main>
   );
 }
+
+
 
 
 

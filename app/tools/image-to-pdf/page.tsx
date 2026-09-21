@@ -3,6 +3,7 @@
 import Link from 'next/link';
 
 import { useState } from "react";
+import RelatedTools from "@/components/RelatedTools";
 import AdsterraAd from "@/components/AdsterraAd";
 import { jsPDF } from "jspdf";
 
@@ -292,10 +293,14 @@ export default function ImageToPdfPage() {
             <li>Your PDF is generated directly in your browser.</li>
           </ol>
         </section>
-      </div>`r`n        <AdsterraAd />
+      </div>        <RelatedTools currentTool="image-to-pdf" />
+
+        <AdsterraAd />
       </main>
   );
 }
+
+
 
 
 

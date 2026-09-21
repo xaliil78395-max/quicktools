@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import { useState } from "react";
 
@@ -184,6 +185,9 @@ export default function HtmlToTextPage() {
           Advertisement
         </div>
       </div>
-    </main>
+    <RelatedTools currentTool="html-to-text" />
+</main>
   );
 }
+
+

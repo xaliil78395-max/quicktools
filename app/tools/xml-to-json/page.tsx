@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import RelatedTools from "@/components/RelatedTools";
 import AdsterraAd from "@/components/AdsterraAd";
 
 function xmlElementToValue(element: Element): unknown {
@@ -189,9 +190,13 @@ export default function XmlToJsonPage() {
         </div>
 
         <div className="mt-10">
+          <RelatedTools currentTool="xml-to-json" />
+
+
           <AdsterraAd />
         </div>
       </div>
     </main>
   );
 }
+

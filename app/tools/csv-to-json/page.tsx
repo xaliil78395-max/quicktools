@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import RelatedTools from "@/components/RelatedTools";
 import AdsterraAd from "@/components/AdsterraAd";
 
 function parseCsv(csv: string): string[][] {
@@ -236,7 +237,13 @@ export default function CsvToJsonPage() {
         </div>
       </div>
 
+      <RelatedTools currentTool="csv-to-json" />
+
       <AdsterraAd />
     </main>
   );
 }
+
+
+
+

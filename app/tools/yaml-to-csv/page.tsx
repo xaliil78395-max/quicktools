@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import { useState } from "react";
 
@@ -235,6 +236,9 @@ export default function YamlToCsvPage() {
           <div id="adsterra-ad" />
         </div>
       </div>
-    </main>
+    <RelatedTools currentTool="yaml-to-csv" />
+</main>
   );
 }
+
+

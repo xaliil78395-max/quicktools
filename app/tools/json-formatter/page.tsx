@@ -1,6 +1,7 @@
 ﻿"use client";
 
 
+import RelatedTools from "@/components/RelatedTools";
 import AdsterraAd from "@/components/AdsterraAd";
 import Link from "next/link";
 import { useState } from "react";
@@ -131,6 +132,11 @@ export default function JsonFormatter() {
         </div>
 
 
+        <RelatedTools currentTool="json-formatter" />
+
+
+
+
         <AdsterraAd />
         <section className="mt-12">
           <h2 className="text-2xl font-bold">
@@ -147,5 +153,6 @@ export default function JsonFormatter() {
     </main>
   );
 }
+
 
 

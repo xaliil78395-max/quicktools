@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -259,7 +260,8 @@ export default function ImageCropper() {
           </p>
         </section>
       </div>
-    </main>
+    <RelatedTools currentTool="image-cropper" />
+</main>
   );
 }
 
@@ -297,4 +299,5 @@ function getCroppedImg(
     resolve(canvas.toDataURL("image/jpeg", 0.92));
   });
 }
+
 

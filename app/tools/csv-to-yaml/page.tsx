@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import { useState } from "react";
 
@@ -350,7 +351,13 @@ Example,50,false`}
           <div id="container-ads" />
         </div>
       </div>
-    </main>
+    <RelatedTools currentTool="csv-to-yaml" />
+</main>
   );
 }
+
+
+
+
+
 

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import RelatedTools from "@/components/RelatedTools";
 import AdsterraAd from "@/components/AdsterraAd";
 
 function jsonToCsv(input: string) {
@@ -187,7 +188,12 @@ export default function JsonToCsvPage() {
         </div>
       </div>
 
+      <RelatedTools currentTool="json-to-csv" />
+
+
+
       <AdsterraAd />
     </main>
   );
 }
+

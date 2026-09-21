@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import RelatedTools from "@/components/RelatedTools";
 import AdsterraAd from "@/components/AdsterraAd";
 
 function beautifyCss(css: string) {
@@ -219,8 +220,13 @@ export default function CssFormatterPage() {
           </p>
         </section>
 
+        <RelatedTools currentTool="css-formatter" />
+
+
+
         <AdsterraAd />
       </div>
     </main>
   );
 }
+

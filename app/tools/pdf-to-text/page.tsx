@@ -3,6 +3,7 @@
 import Link from 'next/link';
 
 import { useState } from "react";
+import RelatedTools from "@/components/RelatedTools";
 import AdsterraAd from "@/components/AdsterraAd";
 import * as pdfjsLib from "pdfjs-dist";
 
@@ -179,10 +180,14 @@ export default function PDFToTextPage() {
             Scanned PDFs and image-only documents may not produce text.
           </p>
         </div>
-      </div>`r`n        <AdsterraAd />
+      </div>        <RelatedTools currentTool="pdf-to-text" />
+
+        <AdsterraAd />
       </main>
   );
 }
+
+
 
 
 

@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import { useState } from "react";
 
@@ -315,6 +316,9 @@ export default function HtmlToMarkdownPage() {
           Advertisement
         </div>
       </div>
-    </main>
+    <RelatedTools currentTool="html-to-markdown" />
+</main>
   );
 }
+
+

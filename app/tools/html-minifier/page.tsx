@@ -1,6 +1,7 @@
 ﻿"use client";
 
 
+import RelatedTools from "@/components/RelatedTools";
 import AdsterraAd from "@/components/AdsterraAd";
 import Link from "next/link";
 import { useState } from "react";
@@ -33,7 +34,7 @@ export default function HtmlMinifierPage() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-10 text-slate-900">`r`n        <div className="mb-6 flex items-center justify-between"><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">← Back to QuickHub</a><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">Home</a></div>
+    <main className="min-h-screen bg-slate-50 px-4 py-10 text-slate-900">        <div className="mb-6 flex items-center justify-between"><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">← Back to QuickHub</a><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">Home</a></div>
       <div className="mx-auto max-w-5xl">
         <Link
           href="/"
@@ -41,6 +42,11 @@ export default function HtmlMinifierPage() {
         >
           ← Back to QuickTools
         </Link>
+
+
+        <RelatedTools currentTool="html-minifier" />
+
+
 
 
         <AdsterraAd />
@@ -136,6 +142,8 @@ export default function HtmlMinifierPage() {
     </main>
   );
 }
+
+
 
 
 

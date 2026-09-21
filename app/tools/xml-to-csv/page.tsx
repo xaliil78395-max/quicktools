@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import { useState } from "react";
 
@@ -285,6 +286,9 @@ export default function XmlToCsvPage() {
           <div id="adsterra-ad" />
         </div>
       </div>
-    </main>
+    <RelatedTools currentTool="xml-to-csv" />
+</main>
   );
 }
+
+

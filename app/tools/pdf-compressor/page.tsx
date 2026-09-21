@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import { PDFDocument } from "pdf-lib";
 import Link from "next/link";
@@ -332,7 +333,9 @@ export default function PdfCompressorPage() {
           </p>
         </section>
       </div>
-    </main>
+    <RelatedTools currentTool="pdf-compressor" />
+</main>
   );
 }
+
 

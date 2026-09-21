@@ -1,6 +1,7 @@
 ﻿"use client";
 
 
+import RelatedTools from "@/components/RelatedTools";
 import AdsterraAd from "@/components/AdsterraAd";
 import { useMemo, useState } from "react";
 
@@ -19,7 +20,7 @@ export default function ParagraphCounter() {
   }, [text]);
 
   return (
-    <main className="min-h-screen px-4 py-12">`r`n        <div className="mb-6 flex items-center justify-between"><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">← Back to QuickHub</a><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">Home</a></div>
+    <main className="min-h-screen px-4 py-12">        <div className="mb-6 flex items-center justify-between"><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">← Back to QuickHub</a><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">Home</a></div>
       <div className="mx-auto max-w-4xl">
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold tracking-tight">
@@ -54,6 +55,11 @@ export default function ParagraphCounter() {
         </div>
 
 
+        <RelatedTools currentTool="paragraph-counter" />
+
+
+
+
         <AdsterraAd />
         <section className="mt-12">
           <h2 className="text-2xl font-bold">
@@ -70,6 +76,8 @@ export default function ParagraphCounter() {
     </main>
   );
 }
+
+
 
 
 

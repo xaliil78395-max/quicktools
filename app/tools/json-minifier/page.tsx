@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import RelatedTools from "@/components/RelatedTools";
 import AdsterraAd from "@/components/AdsterraAd";
 
 function formatBytes(bytes: number) {
@@ -202,8 +203,13 @@ export default function JsonMinifierPage() {
           </p>
         </section>
 
+        <RelatedTools currentTool="json-minifier" />
+
+
+
         <AdsterraAd />
       </div>
     </main>
   );
 }
+

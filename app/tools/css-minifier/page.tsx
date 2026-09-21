@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import RelatedTools from "@/components/RelatedTools";
 import AdsterraAd from "@/components/AdsterraAd";
 
 function formatBytes(bytes: number) {
@@ -230,8 +231,13 @@ export default function CssMinifierPage() {
           </p>
         </section>
 
+        <RelatedTools currentTool="css-minifier" />
+
+
+
         <AdsterraAd />
       </div>
     </main>
   );
 }
+

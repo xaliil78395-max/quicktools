@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import RelatedTools from "@/components/RelatedTools";
 import AdsterraAd from "@/components/AdsterraAd";
 
 type JsonValue = string | number | boolean | null | JsonObject | JsonValue[];
@@ -335,9 +336,13 @@ export default function YamlToJsonPage() {
         </div>
 
         <div className="mt-10">
+          <RelatedTools currentTool="yaml-to-json" />
+
+
           <AdsterraAd />
         </div>
       </div>
     </main>
   );
 }
+

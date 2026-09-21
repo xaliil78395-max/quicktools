@@ -1,6 +1,7 @@
 ﻿"use client";
 
 
+import RelatedTools from "@/components/RelatedTools";
 import AdsterraAd from "@/components/AdsterraAd";
 import Link from "next/link";
 import { useMemo, useState } from "react";
@@ -51,7 +52,11 @@ export default function WordCounter() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-950">`r`n        <div className="mb-6 flex items-center justify-between"><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">← Back to QuickHub</a><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">Home</a></div>
+    <main className="min-h-screen bg-slate-50 text-slate-950">        <div className="mb-6 flex items-center justify-between"><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">← Back to QuickHub</a><a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition">Home</a></div>
+
+        <RelatedTools currentTool="word-counter" />
+
+
 
         <AdsterraAd />
         <section className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
@@ -179,6 +184,8 @@ export default function WordCounter() {
     </main>
   );
 }
+
+
 
 
 
