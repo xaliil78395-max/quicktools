@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -187,9 +188,11 @@ export default function TextSorter() {
           </p>
         </div>
       </section>
-    </main>
+            <RelatedTools currentTool="text-sorter" />
+      </main>
   );
 }
+
 
 
 

@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -248,9 +249,11 @@ export default function RandomNumberGenerator() {
           </p>
         </section>
       </section>
-    </main>
+            <RelatedTools currentTool="random-number-generator" />
+      </main>
   );
 }
+
 
 
 

@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -134,9 +135,11 @@ export default function SlugGeneratorPage() {
           </p>
         </section>
       </div>
-    </main>
+            <RelatedTools currentTool="slug-generator" />
+      </main>
   );
 }
+
 
 
 

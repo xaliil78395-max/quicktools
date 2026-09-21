@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import Link from "next/link";
 import { useState } from "react";
@@ -201,6 +202,8 @@ export default function TimestampConverterPage() {
           <AdsterraAd />
         </div>
       </div>
-    </main>
+            <RelatedTools currentTool="timestamp-converter" />
+      </main>
   );
 }
+

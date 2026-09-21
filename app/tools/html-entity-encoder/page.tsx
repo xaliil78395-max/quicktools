@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -169,9 +170,11 @@ export default function HtmlEntityEncoderPage() {
           </p>
         </section>
       </div>
-    </main>
+            <RelatedTools currentTool="html-entity-encoder" />
+      </main>
   );
 }
+
 
 
 

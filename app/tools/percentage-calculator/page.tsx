@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -245,7 +246,8 @@ export default function PercentageCalculatorPage() {
           </p>
         </section>
       </div>
-    </main>
+            <RelatedTools currentTool="percentage-calculator" />
+      </main>
   );
 }
 
@@ -356,6 +358,7 @@ function formatNumber(value: number) {
     maximumFractionDigits: 10,
   }).format(value);
 }
+
 
 
 

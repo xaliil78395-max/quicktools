@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -346,9 +347,11 @@ export default function PngToWebp() {
         onChange={handleInputChange}
         className="hidden"
       />
-    </main>
+            <RelatedTools currentTool="png-to-webp" />
+      </main>
   );
 }
+
 
 
 

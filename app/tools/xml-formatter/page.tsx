@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import Link from "next/link";
 import { useState } from "react";
@@ -221,6 +222,8 @@ export default function XmlFormatterPage() {
 
         <AdsterraAd />
       </div>
-    </main>
+            <RelatedTools currentTool="xml-formatter" />
+      </main>
   );
 }
+

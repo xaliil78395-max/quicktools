@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import Link from 'next/link';
 
@@ -188,9 +189,11 @@ export default function PowerPointToPDFPage() {
         </div>
       </div>
         <AdsterraAd />
+              <RelatedTools currentTool="powerpoint-to-pdf" />
       </main>
   );
 }
+
 
 
 

@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -318,7 +319,8 @@ export default function BmiCalculatorPage() {
           </p>
         </section>
       </div>
-    </main>
+            <RelatedTools currentTool="bmi-calculator" />
+      </main>
   );
 }
 
@@ -327,6 +329,7 @@ function formatNumber(value: number) {
     maximumFractionDigits: 1,
   }).format(value);
 }
+
 
 
 

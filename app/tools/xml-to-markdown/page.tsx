@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import { useState } from "react";
 
@@ -266,6 +267,8 @@ export default function XmlToMarkdownPage() {
           Advertisement
         </div>
       </div>
-    </main>
+            <RelatedTools currentTool="xml-to-markdown" />
+      </main>
   );
 }
+

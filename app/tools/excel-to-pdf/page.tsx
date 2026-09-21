@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import Link from 'next/link';
 
@@ -334,9 +335,11 @@ export default function ExcelToPdfPage() {
           </p>
         </section>
       </div>`r`n        <AdsterraAd />
+              <RelatedTools currentTool="excel-to-pdf" />
       </main>
   );
 }
+
 
 
 

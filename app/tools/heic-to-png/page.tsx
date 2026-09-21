@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import Link from 'next/link';
 
@@ -290,9 +291,11 @@ export default function HeicToPngPage() {
           </ol>
         </section>
       </div>`r`n        <AdsterraAd />
+              <RelatedTools currentTool="heic-to-png" />
       </main>
   );
 }
+
 
 
 

@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -282,9 +283,11 @@ export default function GPACalculator() {
           </p>
         </section>
       </div>
-    </main>
+            <RelatedTools currentTool="gpa-calculator" />
+      </main>
   );
 }
+
 
 
 

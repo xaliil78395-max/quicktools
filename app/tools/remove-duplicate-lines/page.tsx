@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -184,9 +185,11 @@ export default function RemoveDuplicateLines() {
           </p>
         </div>
       </section>
-    </main>
+            <RelatedTools currentTool="remove-duplicate-lines" />
+      </main>
   );
 }
+
 
 
 

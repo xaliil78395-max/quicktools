@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import Link from 'next/link';
 
@@ -306,9 +307,11 @@ export default function PDFPageExtractorPage() {
           </p>
         </div>
       </div>`r`n        <AdsterraAd />
+              <RelatedTools currentTool="pdf-page-extractor" />
       </main>
   );
 }
+
 
 
 

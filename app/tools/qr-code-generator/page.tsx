@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -184,8 +185,10 @@ export default function QRCodeGenerator() {
           </p>
         </section>
       </div>
-    </main>
+            <RelatedTools currentTool="qr-code-generator" />
+      </main>
   );
 }
+
 
 

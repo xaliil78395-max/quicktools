@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import Link from "next/link";
 import { useState } from "react";
@@ -176,6 +177,8 @@ export default function MarkdownFormatterPage() {
           <AdsterraAd />
         </div>
       </div>
-    </main>
+            <RelatedTools currentTool="markdown-formatter" />
+      </main>
   );
 }
+

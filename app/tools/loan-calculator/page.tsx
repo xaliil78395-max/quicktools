@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -161,9 +162,11 @@ export default function LoanCalculatorPage() {
           </p>
         </div>
       </div>
-    </main>
+            <RelatedTools currentTool="loan-calculator" />
+      </main>
   );
 }
+
 
 
 

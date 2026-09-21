@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -392,9 +393,11 @@ export default function ScientificCalculator() {
           </p>
         </section>
       </div>
-    </main>
+            <RelatedTools currentTool="scientific-calculator" />
+      </main>
   );
 }
+
 
 
 

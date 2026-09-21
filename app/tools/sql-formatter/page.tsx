@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -159,9 +160,11 @@ export default function SqlFormatterPage() {
           </p>
         </section>
       </div>
-    </main>
+            <RelatedTools currentTool="sql-formatter" />
+      </main>
   );
 }
+
 
 
 

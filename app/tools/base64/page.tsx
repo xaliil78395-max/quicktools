@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -151,8 +152,10 @@ export default function Base64Tool() {
           </p>
         </section>
       </div>
-    </main>
+            <RelatedTools currentTool="base64" />
+      </main>
   );
 }
+
 
 

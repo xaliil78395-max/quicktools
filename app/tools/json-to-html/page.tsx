@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import { useState } from "react";
 
@@ -190,6 +191,8 @@ ${output}
           <div id="adsterra-ad" />
         </div>
       </div>
-    </main>
+            <RelatedTools currentTool="json-to-html" />
+      </main>
   );
 }
+

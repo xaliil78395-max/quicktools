@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -531,9 +532,11 @@ export default function FractionCalculatorPage() {
           </article>
         </div>
       </section>
-    </main>
+            <RelatedTools currentTool="fraction-calculator" />
+      </main>
   );
 }
+
 
 
 

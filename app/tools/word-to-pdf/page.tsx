@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import Link from 'next/link';
 
@@ -257,9 +258,11 @@ export default function WordToPdfPage() {
           </p>
         </section>
       </div>`r`n        <AdsterraAd />
+              <RelatedTools currentTool="word-to-pdf" />
       </main>
   );
 }
+
 
 
 

@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -168,9 +169,11 @@ export default function EmailValidatorPage() {
           </p>
         </section>
       </div>
-    </main>
+            <RelatedTools currentTool="email-validator" />
+      </main>
   );
 }
+
 
 
 

@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import Link from 'next/link';
 
@@ -222,9 +223,11 @@ export default function PDFToPNGPage() {
         </div>
       </div>
         <AdsterraAd />
+              <RelatedTools currentTool="pdf-to-png" />
       </main>
   );
 }
+
 
 
 

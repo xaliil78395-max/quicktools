@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -343,9 +344,11 @@ export default function JpgToPng() {
         onChange={handleInputChange}
         className="hidden"
       />
-    </main>
+            <RelatedTools currentTool="jpg-to-png" />
+      </main>
   );
 }
+
 
 
 

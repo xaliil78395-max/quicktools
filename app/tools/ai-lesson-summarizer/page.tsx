@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -149,9 +150,11 @@ export default function AILessonSummarizerPage() {
           </p>
         </section>
       </div>
-    </main>
+            <RelatedTools currentTool="ai-lesson-summarizer" />
+      </main>
   );
 }
+
 
 
 

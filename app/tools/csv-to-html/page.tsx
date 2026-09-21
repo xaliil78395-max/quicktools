@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import { useState } from "react";
 
@@ -261,6 +262,8 @@ Example,50,false`}
           Advertisement
         </div>
       </div>
-    </main>
+            <RelatedTools currentTool="csv-to-html" />
+      </main>
   );
 }
+

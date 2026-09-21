@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -264,9 +265,11 @@ export default function MortgageCalculatorPage() {
           on your lender, taxes, insurance, fees, and other costs.
         </p>
       </section>
-    </main>
+            <RelatedTools currentTool="mortgage-calculator" />
+      </main>
   );
 }
+
 
 
 

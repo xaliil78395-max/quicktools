@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import { useState } from "react";
 
@@ -341,6 +342,8 @@ active: true`}
           Advertisement
         </div>
       </div>
-    </main>
+            <RelatedTools currentTool="yaml-to-markdown" />
+      </main>
   );
 }
+

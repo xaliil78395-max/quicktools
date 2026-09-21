@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import { useState } from "react";
 
@@ -195,6 +196,8 @@ export default function JsonToMarkdownPage() {
           Advertisement
         </div>
       </div>
-    </main>
+            <RelatedTools currentTool="json-to-markdown" />
+      </main>
   );
 }
+

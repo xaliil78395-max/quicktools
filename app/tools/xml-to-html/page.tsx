@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import { useState } from "react";
 
@@ -289,6 +290,8 @@ ${output}
           Advertisement
         </div>
       </div>
-    </main>
+            <RelatedTools currentTool="xml-to-html" />
+      </main>
   );
 }
+

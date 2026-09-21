@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
@@ -548,6 +549,8 @@ export default function PomodoroTimerPage() {
           </div>
         </div>
       </div>
-    </main>
+            <RelatedTools currentTool="pomodoro-timer" />
+      </main>
   );
 }
+

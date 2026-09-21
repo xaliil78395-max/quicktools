@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -260,9 +261,11 @@ export default function AmortizationCalculator() {
           </p>
         </section>
       </div>
-    </main>
+            <RelatedTools currentTool="amortization-calculator" />
+      </main>
   );
 }
+
 
 
 

@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import Link from 'next/link';
 
@@ -341,9 +342,11 @@ export default function WebpToJpgPage() {
           </ol>
         </section>
       </div>`r`n        <AdsterraAd />
+              <RelatedTools currentTool="webp-to-jpg" />
       </main>
   );
 }
+
 
 
 

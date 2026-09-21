@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import Link from "next/link";
 import { useState } from "react";
@@ -218,6 +219,8 @@ export default function AgeCalculatorPage() {
           <AdsterraAd />
         </div>
       </div>
-    </main>
+            <RelatedTools currentTool="age-calculator" />
+      </main>
   );
 }
+

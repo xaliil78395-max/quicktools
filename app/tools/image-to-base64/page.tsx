@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -279,9 +280,11 @@ export default function ImageToBase64() {
         onChange={handleInputChange}
         className="hidden"
       />
-    </main>
+            <RelatedTools currentTool="image-to-base64" />
+      </main>
   );
 }
+
 
 
 

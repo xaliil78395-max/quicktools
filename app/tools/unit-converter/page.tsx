@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import Link from "next/link";
 import { useState } from "react";
@@ -255,6 +256,8 @@ export default function UnitConverterPage() {
           <AdsterraAd />
         </div>
       </div>
-    </main>
+            <RelatedTools currentTool="unit-converter" />
+      </main>
   );
 }
+

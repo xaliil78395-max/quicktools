@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 import Link from 'next/link';
 
@@ -441,9 +442,11 @@ export default function HeicToJpgPage() {
           </p>
         </section>
       </div>        <AdsterraAd />
+              <RelatedTools currentTool="heic-to-jpg" />
       </main>
   );
 }
+
 
 
 

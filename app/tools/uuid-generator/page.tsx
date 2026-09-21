@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -210,9 +211,11 @@ export default function UuidGenerator() {
           </p>
         </div>
       </section>
-    </main>
+            <RelatedTools currentTool="uuid-generator" />
+      </main>
   );
 }
+
 
 
 

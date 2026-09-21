@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -158,9 +159,11 @@ export default function UrlEncoderDecoder() {
           </p>
         </div>
       </section>
-    </main>
+            <RelatedTools currentTool="url-encoder-decoder" />
+      </main>
   );
 }
+
 
 
 

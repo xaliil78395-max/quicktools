@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -225,9 +226,11 @@ export default function PdfToJpgPage() {
           </p>
         </section>
       </div>
-    </main>
+            <RelatedTools currentTool="pdf-to-jpg" />
+      </main>
   );
 }
+
 
 
 

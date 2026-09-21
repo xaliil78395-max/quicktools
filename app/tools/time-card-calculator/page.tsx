@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -234,9 +235,11 @@ export default function TimeCardCalculatorPage() {
           calculated separately at 1.5 times the regular hourly rate.
         </p>
       </section>
-    </main>
+            <RelatedTools currentTool="time-card-calculator" />
+      </main>
   );
 }
+
 
 
 

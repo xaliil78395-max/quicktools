@@ -1,4 +1,5 @@
 ﻿"use client";
+import RelatedTools from "@/components/RelatedTools";
 
 
 import AdsterraAd from "@/components/AdsterraAd";
@@ -240,9 +241,11 @@ export default function ColorConverterPage() {
           </p>
         </section>
       </div>
-    </main>
+            <RelatedTools currentTool="color-converter" />
+      </main>
   );
 }
+
 
 
 
