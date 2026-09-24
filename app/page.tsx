@@ -50,6 +50,8 @@ const categories = [
       { name: "Text Sorter", description: "Sort text lines alphabetically", href: "/tools/text-sorter" },
       { name: "URL Encoder / Decoder", description: "Encode and decode URLs", href: "/tools/url-encoder-decoder" },
     { name: "HTML to Plain Text Converter", description: "Convert HTML to plain text", href: "/tools/html-to-text" },
+      { name: "Markdown to HTML Converter", description: "Convert Markdown to HTML", href: "/tools/markdown-to-html" },
+      { name: "Markdown to Plain Text Converter", description: "Convert Markdown to plain text", href: "/tools/markdown-to-text" },
       { name: "Case Converter", description: "Change text capitalization", href: "/tools/case-converter" },
     ],
   },
@@ -59,6 +61,15 @@ const categories = [
     icon: "{ }",
     tools: [
       { name: "JSON Formatter", description: "Format and validate JSON", href: "/tools/json-formatter" },
+      { name: "HTML to JSON Converter", description: "Convert HTML tables to JSON", href: "/tools/html-to-json" },
+    { name: "HTML to CSV Converter", description: "Convert HTML tables to CSV", href: "/tools/html-to-csv" },
+    { name: "HTML to Excel Converter", description: "Convert HTML tables to Excel", href: "/tools/html-to-excel" },
+  { name: "Excel to CSV Converter", description: "Convert Excel worksheets to CSV", href: "/tools/excel-to-csv" },
+    { name: "CSV to Excel Converter", description: "Convert CSV data to Excel", href: "/tools/csv-to-excel" },
+    { name: "Excel to JSON Converter", description: "Convert Excel files to JSON", href: "/tools/excel-to-json" },
+    { name: "JSON to Excel Converter", description: "Convert JSON data to Excel", href: "/tools/json-to-excel" },
+    { name: "Excel to XML Converter", description: "Convert Excel files to XML", href: "/tools/excel-to-xml" },
+    { name: "XML to Excel Converter", description: "Convert XML data to Excel", href: "/tools/xml-to-excel" },
       { name: "Base64 Encoder", description: "Encode and decode Base64", href: "/tools/base64" },
       { name: "HTML Formatter", description: "Format and beautify HTML", href: "/tools/html-formatter" },
       { name: "UUID Generator", description: "Generate unique UUIDs", href: "/tools/uuid-generator" },
@@ -621,6 +632,17 @@ export default function Home() {
     </main>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

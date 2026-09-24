@@ -101,11 +101,72 @@ export const relatedTools: Record<string, RelatedTool[]> = {
     { name: "CSS Minifier", href: "/tools/css-minifier" },
   ],
 
-  "html-to-markdown": [
+  "markdown-to-html": [
+      { name: "HTML to Markdown Converter", href: "/tools/html-to-markdown" },
+      { name: "HTML to Text Converter", href: "/tools/html-to-text" },
+    ],
+  "markdown-to-text": [
+    { name: "Markdown to HTML Converter", href: "/tools/markdown-to-html" },
+    { name: "HTML to Markdown Converter", href: "/tools/html-to-markdown" },
+    { name: "Markdown Formatter", href: "/tools/markdown-formatter" },
+  ],
+
+    "html-to-markdown": [
     { name: "HTML Formatter", href: "/tools/html-formatter" },
     { name: "HTML to Plain Text", href: "/tools/html-to-text" },
     { name: "Markdown Formatter", href: "/tools/markdown-formatter" },
     { name: "JSON to Markdown", href: "/tools/json-to-markdown" },
+  ],
+
+  "html-to-excel": [
+    { name: "HTML to CSV", href: "/tools/html-to-csv" },
+    { name: "HTML to JSON", href: "/tools/html-to-json" },
+    { name: "CSV to HTML", href: "/tools/csv-to-html" },
+  ],
+  "excel-to-csv": [
+    { name: "HTML to Excel", href: "/tools/html-to-excel" },
+    { name: "CSV to JSON", href: "/tools/csv-to-json" },
+    { name: "CSV to HTML", href: "/tools/csv-to-html" },
+  ],
+
+  "csv-to-excel": [
+    { name: "Excel to CSV", href: "/tools/excel-to-csv" },
+    { name: "CSV to JSON", href: "/tools/csv-to-json" },
+    { name: "CSV to HTML", href: "/tools/csv-to-html" },
+  ],
+
+  "excel-to-json": [
+    { name: "Excel to CSV", href: "/tools/excel-to-csv" },
+    { name: "CSV to JSON", href: "/tools/csv-to-json" },
+    { name: "JSON Formatter", href: "/tools/json-formatter" },
+  ],
+
+  "json-to-excel": [
+    { name: "Excel to JSON", href: "/tools/excel-to-json" },
+    { name: "JSON to CSV", href: "/tools/json-to-csv" },
+    { name: "JSON to XML", href: "/tools/json-to-xml" },
+  ],
+
+  "excel-to-xml": [
+    { name: "Excel to CSV", href: "/tools/excel-to-csv" },
+    { name: "Excel to JSON", href: "/tools/excel-to-json" },
+    { name: "CSV to XML", href: "/tools/csv-to-xml" },
+  ],
+
+  "xml-to-excel": [
+    { name: "Excel to XML", href: "/tools/excel-to-xml" },
+    { name: "XML to CSV", href: "/tools/xml-to-csv" },
+    { name: "XML to JSON", href: "/tools/xml-to-json" },
+  ],
+  "html-to-csv": [
+    { name: "CSV to HTML", href: "/tools/csv-to-html" },
+    { name: "CSV to JSON", href: "/tools/csv-to-json" },
+    { name: "HTML to JSON", href: "/tools/html-to-json" },
+  ],
+  "html-to-json": [
+    { name: "JSON Formatter", href: "/tools/json-formatter" },
+    { name: "JSON to HTML", href: "/tools/json-to-html" },
+    { name: "HTML to Markdown", href: "/tools/html-to-markdown" },
   ],
 
   "html-to-text": [
@@ -505,5 +566,20 @@ export const relatedTools: Record<string, RelatedTool[]> = {
     { name: "Markdown Formatter", href: "/tools/markdown-formatter" },
   ],
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
